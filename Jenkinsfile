@@ -13,6 +13,7 @@ pipeline {
           containers:
           - name: sphinx-build
             image: robinhoodis/sphinx-build:latest
+            imagePullPolicy: IfNotPresent
             command:
             - cat
             tty: true
