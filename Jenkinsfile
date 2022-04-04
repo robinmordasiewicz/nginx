@@ -11,33 +11,11 @@ pipeline {
         kind: Pod
         spec:
           containers:
-          - name: ubuntu
-            image: robinhoodis/ubuntu:latest
-            command:
-            - cat
-            tty: true
           - name: sphinx-build
             image: robinhoodis/sphinx-build:latest
             command:
             - cat
             tty: true
-          - name: kaniko
-            image: gcr.io/kaniko-project/executor:debug
-            imagePullPolicy: Always
-            command:
-            - /busybox/cat
-            tty: true
-            volumeMounts:
-              - name: kaniko-secret
-                mountPath: /kaniko/.docker
-          restartPolicy: Never
-          volumes:
-            - name: kaniko-secret
-              secret:
-                secretName: regcred
-                items:
-                  - key: .dockerconfigjson
-                    path: config.json
         '''
     }
   }
