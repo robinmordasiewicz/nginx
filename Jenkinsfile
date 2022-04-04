@@ -1,8 +1,7 @@
 pipeline {
   options {
-    disableConcurrentBuilds(abortPrevious: true)
+    disableConcurrentBuilds()
     skipDefaultCheckout(true)
-    ansiColor('xterm')
   }
   agent {
     kubernetes {
