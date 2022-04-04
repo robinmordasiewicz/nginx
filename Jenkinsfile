@@ -43,13 +43,13 @@ pipeline {
     }
     stage('git-commit') {
       steps {
-        sh 'mkdir html'
-        dir ( 'html' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/html.git'
+        sh 'mkdir nginx-container'
+        dir ( 'nginx-container' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx-container.git'
         }
-        sh 'rm -rf html/*'
-        sh 'cp -a docs/_build/html html/'
-        dir ( 'html' ) {
+        sh 'rm -rf nginx-container/html'
+        sh 'cp -a docs/_build/html nginx-container/'
+        dir ( 'nginx-container' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
           sh 'git add .'
