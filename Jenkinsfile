@@ -48,7 +48,7 @@ pipeline {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/html.git'
         }
         sh 'rm -rf html/*'
-        sh 'cp -a docsdocs/_build/html html/'
+        sh 'cp -a docs/_build/html html/'
         dir ( 'html' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
