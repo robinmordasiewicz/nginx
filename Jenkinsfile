@@ -20,12 +20,6 @@ pipeline {
     }
   }
   stages {
-    stage("cleanWS") {
-      steps {
-        cleanWs()
-        // checkout scm
-      }
-    }
     stage('prepareWS') {
       steps {
         sh 'mkdir -p docs'
@@ -52,7 +46,6 @@ pipeline {
       }
     }
     stage('git-commit') {
-    // when { changeset "nginx-container/html/**"}
       steps {
         dir ( 'nginx-container' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
