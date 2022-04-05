@@ -52,7 +52,7 @@ pipeline {
       }
     }
     stage('git-commit') {
-    //  when { changeset "nginx-container/html/**"}
+    // when { changeset "nginx-container/html/**"}
       steps {
         dir ( 'nginx-container' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
