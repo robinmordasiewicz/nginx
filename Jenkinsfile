@@ -1,8 +1,4 @@
 pipeline {
-  options {
-    disableConcurrentBuilds()
-    skipDefaultCheckout(true)
-  }
   agent {
     kubernetes {
       yaml '''
@@ -20,18 +16,10 @@ pipeline {
     }
   }
   stages {
-    stage('prepareWS') {
-      steps {
-        sh 'mkdir -p docs'
-        dir ( 'docs' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
-        }
-      }
-    }
     stage('shpinx-build') {
       steps {
         container('sphinx-build') {
-          sh 'make -C docs clean html'
+          sh 'make -C clean html'
         }
       }
     }
@@ -42,7 +30,7 @@ pipeline {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx-container.git'
         }
         sh 'rm -rf nginx-container/html'
-        sh 'cp -a docs/_build/html nginx-container/'
+        sh 'cp -a _build/html nginx-container/'
       }
     }
     stage('git-commit') {
