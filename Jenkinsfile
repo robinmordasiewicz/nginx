@@ -46,10 +46,11 @@ pipeline {
         dir ( 'nginx-container' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-          sh 'git add .'
+         // sh 'git add .'
+          sh 'git add -A'
           sh 'git commit -m "New HTML: `date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
-            sh '/usr/bin/git push origin main'
+            sh 'git diff-index --quiet HEAD || git commit -m "New HTML: `date`" && /usr/bin/git push origin main"'
           }
         }
       }
