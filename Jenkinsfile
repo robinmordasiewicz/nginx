@@ -16,6 +16,16 @@ pipeline {
     }
   }
   stages {
+    stage('debug') {
+      steps {
+        sh 'pwd'
+        sh 'ls -al'
+        container('sphinx-build') {
+          sh 'pwd'
+          sh 'ls -al'
+        }
+      }
+    }
     stage('shpinx-build') {
       steps {
         container('sphinx-build') {
