@@ -47,6 +47,7 @@ pipeline {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
          // sh 'git add .'
+          sh 'touch testing'
           sh 'git add -A'
           sh 'git diff-tree -r --no-commit-id --name-only HEAD origin/main && echo $?'
           sh 'git diff-index --quiet HEAD && echo $?'
