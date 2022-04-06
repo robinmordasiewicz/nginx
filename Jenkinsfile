@@ -46,13 +46,12 @@ pipeline {
         dir ( 'nginx-container' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-         // sh 'git add .'
-          sh 'touch testing'
+          // sh 'touch testing'
           sh 'git add -A'
           //sh 'git commit -m "New HTML: `date`"'
           sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
-            sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
+            sh 'git push'
           }
         }
       }
