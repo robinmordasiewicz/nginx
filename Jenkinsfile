@@ -18,6 +18,7 @@ pipeline {
   stages {
     stage('debug') {
       steps {
+        checkout scm
         sh 'pwd'
         sh 'ls -al'
         container('sphinx-build') {
