@@ -50,7 +50,7 @@ pipeline {
           sh 'git add -A'
           sh 'git commit -m "New HTML: `date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
-            sh 'git diff-index --quiet HEAD || git commit -m "New HTML: `date`" && /usr/bin/git push origin main"'
+            sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
           }
         }
       }
