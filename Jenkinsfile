@@ -47,6 +47,7 @@ pipeline {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
          // sh 'git add .'
+          sh 'git diff-tree -r --no-commit-id --name-only HEAD origin/master'
           sh 'git add -A'
           sh 'git commit -m "New HTML: `date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
