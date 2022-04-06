@@ -16,21 +16,18 @@ pipeline {
     }
   }
   stages {
-    stage('debug') {
+    stage('checkout scm') {
       steps {
-        checkout scm
-        sh 'pwd'
-        sh 'ls -al'
-        container('sphinx-build') {
-          sh 'pwd'
-          sh 'ls -al'
+        sh 'mkdir docs'
+        dir ( 'docs' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
         }
       }
     }
     stage('shpinx-build') {
       steps {
         container('sphinx-build') {
-          sh 'make -C clean html'
+          sh 'make -C docs clean html'
         }
       }
     }
@@ -41,7 +38,7 @@ pipeline {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx-container.git'
         }
         sh 'rm -rf nginx-container/html'
-        sh 'cp -a _build/html nginx-container/'
+        sh 'cp -a docs/_build/html nginx-container/'
       }
     }
     stage('git-commit') {
