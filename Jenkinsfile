@@ -41,11 +41,6 @@ pipeline {
         sh 'cp -a docs/_build/html nginx-container/'
       }
     }
-    stage('clean up build directory') {
-      steps {
-        sh 'rm -rf docs'
-      }
-    }
     stage('git-commit') {
       steps {
         dir ( 'nginx-container' ) {
@@ -57,12 +52,6 @@ pipeline {
             sh 'git diff --quiet && git diff --staged --quiet || git push'
           }
         }
-      }
-    }
-    stage('clean up') {
-      steps {
-        sh 'rm -rf nginx-container'
-        sh 'rm -rf docs'
       }
     }
   }
