@@ -9,7 +9,7 @@ pipeline {
         kind: Pod
         spec:
           containers:
-          - name: sphinx-build
+          - name: sphinx
             image: robinhoodis/sphinx:0.0.12
             imagePullPolicy: IfNotPresent
             command:
@@ -27,9 +27,9 @@ pipeline {
         }
       }
     }
-    stage('shpinx-build') {
+    stage('sphinx') {
       steps {
-        container('sphinx-build') {
+        container('sphinx') {
           sh 'make -C docs clean html'
         }
       }
