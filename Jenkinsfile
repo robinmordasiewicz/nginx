@@ -10,7 +10,7 @@ pipeline {
         spec:
           containers:
           - name: sphinx
-            image: robinhoodis/sphinx:0.0.20
+            image: robinhoodis/sphinx:0.0.22
             imagePullPolicy: IfNotPresent
             command:
             - cat
