@@ -30,8 +30,7 @@ pipeline {
     stage('make html') {
       steps {
         container('sphinx') {
-          #sh 'make -C docs clean html'
-          sh '/usr/bin/ls'
+          sh 'sh make -C docs clean html'
         }
       }
     }
