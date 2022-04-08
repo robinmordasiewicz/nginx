@@ -14,5 +14,5 @@ cat tmp/VERSION
 [ -d tmp ] && rm -rf tmp
 echo $SPHINXBUILDVERSION
 
-cat Jenkinsfile | sed -re "s/^[[:space:]]*robinhoodis\/sphinx:.*/sphinx:${SPHINXBUILDVERSION}/" > Jenkinsfile.tmp && mv Jenkinsfile.tmp Jenkinsfile
+cat Jenkinsfile | sed -re "s/^[[:space:]]*robinhoodis\/sphinx:.*/robinhoodis\/sphinx:${SPHINXBUILDVERSION}/" > Jenkinsfile.tmp && mv Jenkinsfile.tmp Jenkinsfile
 
