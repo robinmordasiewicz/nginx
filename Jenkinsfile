@@ -27,14 +27,14 @@ pipeline {
         }
       }
     }
-    stage('sphinx') {
+    stage('make html') {
       steps {
         container('sphinx') {
           sh 'make -C docs clean html'
         }
       }
     }
-    stage('copy-html') {
+    stage('copy html') {
       steps {
         sh 'mkdir nginx'
         dir ( 'nginx' ) {
