@@ -36,17 +36,17 @@ pipeline {
     }
     stage('copy-html') {
       steps {
-        sh 'mkdir nginx-container'
-        dir ( 'nginx-container' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx-container.git'
+        sh 'mkdir nginx'
+        dir ( 'nginx' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
         }
-        sh 'rm -rf nginx-container/html'
-        sh 'cp -a docs/_build/html nginx-container/'
+        sh 'rm -rf nginx/html'
+        sh 'cp -a docs/_build/html nginx/'
       }
     }
     stage('git-commit') {
       steps {
-        dir ( 'nginx-container' ) {
+        dir ( 'nginx' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
           sh 'git add -A'
