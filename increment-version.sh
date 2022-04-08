@@ -3,7 +3,7 @@
 
 set -e
 
-#curl -s -L https://raw.githubusercontent.com/robinmordasiewicz/sphinx-container/main/VERSION --output VERSION.sphinx-container
+#curl -s -L https://raw.githubusercontent.com/robinmordasiewicz/sphinx/main/VERSION --output VERSION.sphinx-container
 
 [ -d tmp ] && rm -rf tmp
 mkdir tmp
