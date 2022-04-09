@@ -38,17 +38,17 @@ pipeline {
         }
       }
     }
+    stage('ls -al') {
+      steps {
+        sh 'ls -al'
+        sh 'ls -al docs/'
+      }
+    }
     stage('make html') {
       steps {
         container('sphinx') {
           sh '/usr/bin/pip3 install -r docs/requirements.txt -U ;/usr/bin/make -C docs clean html'
         }
-      }
-    }
-    stage('ls -al') {
-      steps {
-        sh 'ls -al'
-        sh 'ls -al docs/'
       }
     }
     stage('copy html') {
