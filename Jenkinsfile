@@ -39,11 +39,6 @@ pipeline {
         }
       }
     }
-    stage('ls -al') {
-      steps {
-        sh 'ls -al docs/'
-      }
-    }
     stage('make html') {
       steps {
         container('sphinx') {
