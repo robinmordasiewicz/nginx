@@ -11,7 +11,7 @@ pipeline {
         spec:
           containers:
           - name: sphinx
-            image: robinhoodis/sphinx:0.0.23
+            image: robinhoodis/sphinx:0.0.24
             imagePullPolicy: IfNotPresent
             command:
             - cat
@@ -65,7 +65,7 @@ pipeline {
           sh 'git add -A'
           sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
-            sh 'git diff --quiet && git diff --staged --quiet || git push'
+            sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
           }
         }
       }
