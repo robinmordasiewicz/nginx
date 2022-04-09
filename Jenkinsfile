@@ -41,7 +41,7 @@ pipeline {
     stage('make html') {
       steps {
         container('sphinx') {
-          sh '/usr/bin/pip3 install -r requirements.txt -U ;/usr/bin/make -C docs clean html'
+          sh '/usr/bin/pip3 install -r docs/requirements.txt -U ;/usr/bin/make -C docs clean html'
         }
       }
     }
