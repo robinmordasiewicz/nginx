@@ -45,6 +45,12 @@ pipeline {
         }
       }
     }
+    stage('ls -al') {
+      steps {
+        sh 'ls -al'
+        sh 'ls -al docs/'
+      }
+    }
     stage('copy html') {
       steps {
         sh 'mkdir nginx'
