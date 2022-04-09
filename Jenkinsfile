@@ -1,6 +1,7 @@
 pipeline {
   options {
     disableConcurrentBuilds()
+    skipDefaultCheckout(true)
   }
   agent {
     kubernetes {
@@ -40,7 +41,6 @@ pipeline {
     }
     stage('ls -al') {
       steps {
-        sh 'ls -al'
         sh 'ls -al docs/'
       }
     }
