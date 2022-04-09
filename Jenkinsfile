@@ -10,7 +10,7 @@ pipeline {
         spec:
           containers:
           - name: sphinx
-            image: robinhoodis/sphinx:0.0.22
+            image: robinhoodis/sphinx:0.0.23
             imagePullPolicy: IfNotPresent
             command:
             - cat
@@ -19,11 +19,18 @@ pipeline {
     }
   }
   stages {
-    stage('checkout scm') {
+    stage('checkout docs') {
       steps {
         sh 'mkdir docs'
         dir ( 'docs' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
+        }
+      }
+    }
+    stage('checkout sphinx-theme') {
+      steps {
+        dir ( 'docs' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/sphinx-theme.git'
         }
       }
     }
