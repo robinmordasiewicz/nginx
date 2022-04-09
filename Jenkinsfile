@@ -19,18 +19,22 @@ pipeline {
     }
   }
   stages {
-    stage('checkout docs') {
+    stage('mkdir docs') {
       steps {
         sh 'mkdir docs'
-        dir ( 'docs' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
-        }
       }
     }
     stage('checkout sphinx-theme') {
       steps {
         dir ( 'docs' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/sphinx-theme.git'
+        }
+      }
+    }
+    stage('checkout docs') {
+      steps {
+        dir ( 'docs' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
         }
       }
     }
