@@ -68,6 +68,13 @@ pipeline {
         }
       }
     }
+    stage('Increment VERSION') {
+      steps {
+        container('ubuntu') {
+          sh 'sh increment-version.sh'
+        }
+      }
+    }
     stage('git-commit') {
       steps {
         dir ( 'nginx' ) {
