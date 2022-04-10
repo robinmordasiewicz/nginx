@@ -23,6 +23,11 @@ pipeline {
     }
   }
   stages {
+    stage('INIT') {
+      steps {
+        cleanWs()
+      }
+    }
     stage('mkdir docs') {
       steps {
         sh 'mkdir docs'
@@ -74,14 +79,14 @@ pipeline {
       }
     }
   }
-//  post {
-//    always {
-//      cleanWs(cleanWhenNotBuilt: false,
-//            deleteDirs: true,
-//            disableDeferredWipeout: true,
-//            notFailBuild: true,
-//            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-//                     [pattern: '.propsfile', type: 'EXCLUDE']])
-//    }
-//  }
+  post {
+    always {
+      cleanWs(cleanWhenNotBuilt: false,
+            deleteDirs: true,
+            disableDeferredWipeout: true,
+            notFailBuild: true,
+            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                       [pattern: '.propsfile', type: 'EXCLUDE']])
+    }
+  }
 }
