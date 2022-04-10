@@ -14,7 +14,7 @@ pipeline {
         spec:
           containers:
           - name: sphinx
-            image: robinhoodis/sphinx:0.0.24
+            image: robinhoodis/sphinx:0.0.26
             imagePullPolicy: IfNotPresent
             command:
             - cat
