@@ -73,7 +73,7 @@ pipeline {
         dir ( 'nginx' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-          sh 'git add -A'
+          // sh 'git add -A'
           sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
           sh 'git tag -a `cat VERSION` -m "`cat VERSION`" || echo "Version `tag VERSION` already exists"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
