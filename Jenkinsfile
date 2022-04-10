@@ -61,9 +61,11 @@ pipeline {
         dir ( 'nginx' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
         }
-        sh 'git status'
         sh 'rm -rf nginx/html'
         sh 'cp -a docs/_build/html nginx/'
+        dir ( 'nginx' ) {
+          sh 'git status'
+        }
       }
     }
     stage('git-commit') {
@@ -73,8 +75,13 @@ pipeline {
           sh 'git config user.name "Robin Mordasiewicz"'
           sh 'git add -A'
           sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
+          sh 'git tag -a `cat VERSION` -m "`cat VERSION`" || echo "Version `tag VERSION` already exists"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
-            sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+            // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+            // 'git diff --quiet && git diff --staged --quiet || git push --tags'
+            sh 'git push origin HEAD:main'
+            sh 'git push origin `cat VERSION`'
+            // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
           }
         }
       }
