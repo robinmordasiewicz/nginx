@@ -61,6 +61,7 @@ pipeline {
         dir ( 'nginx' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
         }
+        sh 'git status'
         sh 'rm -rf nginx/html'
         sh 'cp -a docs/_build/html nginx/'
       }
