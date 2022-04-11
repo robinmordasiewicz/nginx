@@ -79,7 +79,7 @@ pipeline {
       when {
         beforeAgent true
         anyOf {
-          changeset "VERSION"
+          // changeset "VERSION"
           triggeredBy cause: 'UserIdCause'
         }
       }
