@@ -20,7 +20,7 @@ pipeline {
             - cat
             tty: true
           - name: sphinx
-            image: robinhoodis/sphinx:0.0.26
+            image: robinhoodis/sphinx:0.0.41
             imagePullPolicy: IfNotPresent
             command:
             - cat
