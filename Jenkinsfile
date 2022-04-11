@@ -88,8 +88,8 @@ pipeline {
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
           // sh 'git add -A'
-          sh 'git diff --quiet && git diff --staged --quiet || git commit -am "New HTML: `date`"'
-          sh 'git tag -a `cat VERSION` -m "`cat VERSION`" || echo "Version `tag VERSION` already exists"'
+          sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`cat VERSION`"'
+          sh 'git tag -a `cat VERSION` -m "`cat VERSION`" || echo "`cat VERSION` already exists"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
             // 'git diff --quiet && git diff --staged --quiet || git push --tags'
