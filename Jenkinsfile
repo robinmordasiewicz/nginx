@@ -13,6 +13,12 @@ pipeline {
         kind: Pod
         spec:
           containers:
+          - name: ubuntu
+            image: robinhoodis/ubuntu:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
           - name: sphinx
             image: robinhoodis/sphinx:0.0.26
             imagePullPolicy: IfNotPresent
