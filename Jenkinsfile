@@ -4,7 +4,7 @@ pipeline {
     skipDefaultCheckout(true)
   }
   triggers {
-    upstream(upstreamProjects: "sphinx,sphinx-theme", threshold: hudson.model.Result.SUCCESS)
+    upstream(upstreamProjects: "sphinx", threshold: hudson.model.Result.SUCCESS)
   }
   agent {
     kubernetes {
