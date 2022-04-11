@@ -100,12 +100,6 @@ pipeline {
         }
       }
     }
-    stage('clean out tmp') {
-      steps {
-        sh 'rm -rf nginx'
-        sh 'rm -rf docs'
-      }
-    }
     stage('commit VERSION') {
       steps {
         sh 'git config user.email "robin@mordasiewicz.com"'
