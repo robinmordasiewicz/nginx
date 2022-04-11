@@ -32,6 +32,7 @@ pipeline {
     stage('INIT') {
       steps {
         cleanWs()
+        checkout scm
       }
     }
     stage('mkdir docs') {
