@@ -13,12 +13,6 @@ pipeline {
         kind: Pod
         spec:
           containers:
-          - name: ubuntu
-            image: robinhoodis/ubuntu:latest
-            imagePullPolicy: Always
-            command:
-            - cat
-            tty: true
           - name: sphinx
             image: robinhoodis/sphinx:0.0.45
             imagePullPolicy: IfNotPresent
@@ -77,6 +71,8 @@ pipeline {
     }
     stage('cleap up docs folder') {
       steps {
+        sh 'id'
+        sh 'ls -al'
         sh 'rm -rf docs'
       }
     }
@@ -98,6 +94,8 @@ pipeline {
     }
     stage('cleap up nginx folder') {
       steps {
+        sh 'id'
+        sh 'ls -al'
         sh 'rm -rf nginx'
       }
     }
