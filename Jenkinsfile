@@ -29,23 +29,32 @@ pipeline {
         checkout scm
       }
     }
-    stage('mkdir docs') {
+    stage('mkdir tmp') {
       steps {
-        sh 'mkdir docs'
+        sh 'mkdir tmp'
       }
     }
     stage('checkout sphinx-theme') {
       steps {
-        dir ( 'docs' ) {
+        sh 'mkdir -p tmp/theme'
+        dir ( 'tmp/theme' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/sphinx-theme.git'
         }
       }
     }
     stage('checkout docs') {
       steps {
-        dir ( 'docs' ) {
+        sh 'mkdir -p tmp/docs'
+        dir ( 'tmp/docs' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
         }
+      }
+    }
+    stage('merge sources') {
+      steps {
+        sh 'cp -aR tmp/theme/* docs/'
+        sh 'cp -aR tmp/docs/* docs/'
+        sh 'rm -rf tmp/'
       }
     }
     stage('make html') {
