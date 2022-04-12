@@ -75,7 +75,12 @@ pipeline {
         }
       }
     }
-    stage('git-commit') {
+    stage('cleap up docs folder') {
+      steps {
+        sh 'rm -rf docs'
+      }
+    }
+    stage('Commit new HTML') {
       steps {
         dir ( 'nginx' ) {
           sh 'git config user.email "robin@mordasiewicz.com"'
@@ -89,6 +94,11 @@ pipeline {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
           }
         }
+      }
+    }
+    stage('cleap up nginx folder') {
+      steps {
+        sh 'rm -rf nginx'
       }
     }
   }
