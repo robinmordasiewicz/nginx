@@ -66,7 +66,7 @@ pipeline {
         sh 'cp -a docs/_build/html nginx/'
       }
     }
-    stage('cleap up docs folder') {
+    stage('clean up docs folder') {
       steps {
         container('sphinx') {
           sh 'id'
