@@ -63,7 +63,7 @@ pipeline {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
         }
         sh 'rm -rf nginx/html'
-        sh 'cp -a docs/_build/html nginx/'
+        sh 'cp -R docs/_build/html nginx/'
       }
     }
     stage('clean up docs folder') {
