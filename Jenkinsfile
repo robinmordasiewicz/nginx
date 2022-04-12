@@ -64,9 +64,6 @@ pipeline {
         }
         sh 'rm -rf nginx/html'
         sh 'cp -a docs/_build/html nginx/'
-        dir ( 'nginx' ) {
-          sh 'git status'
-        }
       }
     }
     stage('cleap up docs folder') {
@@ -74,7 +71,7 @@ pipeline {
         container('sphinx') {
           sh 'id'
           sh 'ls -al'
-          sh 'rm -rf nginx'
+          sh 'rm -rf docs'
         }
       }
     }
