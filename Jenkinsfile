@@ -71,9 +71,11 @@ pipeline {
     }
     stage('cleap up docs folder') {
       steps {
-        sh 'id'
-        sh 'ls -al'
-        sh 'rm -rf docs'
+        container('sphinx') {
+          sh 'id'
+          sh 'ls -al'
+          sh 'rm -rf nginx'
+        }
       }
     }
     stage('Commit new HTML') {
@@ -94,9 +96,11 @@ pipeline {
     }
     stage('cleap up nginx folder') {
       steps {
-        sh 'id'
-        sh 'ls -al'
-        sh 'rm -rf nginx'
+        container('sphinx') {
+          sh 'id'
+          sh 'ls -al'
+          sh 'rm -rf nginx'
+        }
       }
     }
   }
