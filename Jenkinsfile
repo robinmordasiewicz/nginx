@@ -75,13 +75,13 @@ pipeline {
         }
         sh 'rm -rf nginx/html'
         sh 'cp -R docs/_build/html nginx/'
+        sh 'ls -al docs/_build/html'
+        sh 'ls -al nginx/html/'
       }
     }
     stage('clean up docs folder') {
       steps {
         container('sphinx') {
-          sh 'id'
-          sh 'ls -al'
           sh 'rm -rf docs'
         }
       }
@@ -89,15 +89,16 @@ pipeline {
     stage('Commit new HTML') {
       steps {
         dir ( 'nginx' ) {
+          sh 'git status' 
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
           sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
             // 'git diff --quiet && git diff --staged --quiet || git push --tags'
-            sh 'git push origin main'
-           // sh 'git push origin `cat ../VERSION`'
+            // sh 'git push origin `cat ../VERSION`'
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+            sh 'git push origin main'
           }
         }
       }
