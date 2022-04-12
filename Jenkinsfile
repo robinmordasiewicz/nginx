@@ -46,7 +46,7 @@ pipeline {
       steps {
         sh 'mkdir -p tmp/docs'
         dir ( 'tmp/docs' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/docs.git'
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/f5-cnf-lab.git'
         }
       }
     }
