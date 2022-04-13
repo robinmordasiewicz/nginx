@@ -80,9 +80,9 @@ pipeline {
           dir ( 'nginx' ) {
             git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
           }
+          sh 'rm -rf nginx/html'
+          sh 'cp -R docs/_build/html nginx/'
         }
-        sh 'rm -rf nginx/html'
-        sh 'cp -R docs/_build/html nginx/'
       }
     }
     stage('clean up docs folder') {
@@ -95,14 +95,6 @@ pipeline {
     stage('Commit new HTML') {
       when {
         beforeAgent true
-        //allOf {
-          //expression {
-          //  container('ubuntu') {
-          //    dir ( 'nginx' ) {
-          //      sh(returnStatus: true, script: '`[[ git status --untracked-files --porcelain ]]`') == 0
-          //    }
-          //  }
-          //}
           expression {
             container('ubuntu') {
               dir( 'nginx' ) {
@@ -110,7 +102,6 @@ pipeline {
               }
             }
           }
-        //}
       }
       steps {
         dir ( 'nginx' ) {
