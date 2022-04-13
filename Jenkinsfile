@@ -76,8 +76,10 @@ pipeline {
     stage('copy html') {
       steps {
         sh 'mkdir nginx'
-        dir ( 'nginx' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
+        container('ubuntu') {
+          dir ( 'nginx' ) {
+            git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
+          }
         }
         sh 'rm -rf nginx/html'
         sh 'cp -R docs/_build/html nginx/'
