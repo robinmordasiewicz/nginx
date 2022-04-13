@@ -104,7 +104,7 @@ pipeline {
           expression {
             container('ubuntu') {
               dir( 'nginx' ) {
-                sh(returnStatus: true, script: '`[[ git status --untracked-files --porcelain ]]`') == 0
+                sh(returnStatus: true, script: '`[[ `git status --untracked-files --porcelain` ]]`') == 0
               }
             }
           }
