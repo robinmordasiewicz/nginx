@@ -89,9 +89,9 @@ pipeline {
       when {
       beforeAgent true
         expression {
-          sh(returnStatus: true, script: 'git status --untracked-files --porcelain | grep --quiet "VERSION"') == 1
-git status --untracked-files --porcelain
-git diff --quiet --exit-code
+          container('ubuntu') {
+            sh(returnStatus: true, script: 'git diff --quiet --exit-code') == 1
+          }
         }
       }
       steps {
