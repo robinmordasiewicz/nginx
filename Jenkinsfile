@@ -91,7 +91,7 @@ pipeline {
           expression {
             container('ubuntu') {
               dir ( 'nginx' ) {
-                sh(returnStatus: true, script: 'git diff --quiet --exit-code') == 1
+                sh(returnStatus: true, script: '[[ `git status --untracked-files --porcelain` ]]') == 0
               }
             }
           }
