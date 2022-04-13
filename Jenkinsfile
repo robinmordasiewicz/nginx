@@ -53,7 +53,8 @@ pipeline {
     stage('merge sources') {
       steps {
         sh 'mkdir docs'
-        sh 'cp -aR tmp/theme/* docs/'
+        sh 'cp -aR tmp/theme/_static docs/'
+        sh 'cp -aR tmp/theme/_templates docs/'
         sh 'cp -aR tmp/docs/* docs/'
         sh 'rm -rf tmp/'
       }
@@ -92,7 +93,9 @@ pipeline {
           sh 'git status' 
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-          sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
+          sh 'git add -A'
+          sh 'git commit -m "`date`"'
+          #sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
             // 'git diff --quiet && git diff --staged --quiet || git push --tags'
