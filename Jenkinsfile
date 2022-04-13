@@ -96,7 +96,9 @@ pipeline {
           //  }
           //}
           expression {
-            sh(returnStatus: true, script: '`echo 0`') == 0
+            container('ubuntu') {
+              sh(returnStatus: true, script: '`echo 0`') == 0
+            }
           }
         }
       }
