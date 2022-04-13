@@ -97,7 +97,6 @@ pipeline {
           //}
           expression {
             sh(returnStatus: true, script: '`echo 0`') == 0
-            }
           }
         }
       }
