@@ -93,24 +93,23 @@ pipeline {
           sh 'git status' 
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-          sh 'git add -A'
-          sh 'git commit -m "`date`"'
-          // sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
+          // sh 'git add -A'
+          // sh 'git commit -m "`date`"'
+          sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
             // 'git diff --quiet && git diff --staged --quiet || git push --tags'
             // sh 'git push origin `cat ../VERSION`'
-            // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
-            sh 'git push origin main'
+            sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+            // sh 'git push origin main'
           }
+          sh 'git status' 
         }
       }
     }
     stage('cleap up nginx folder') {
       steps {
         container('sphinx') {
-          sh 'id'
-          sh 'ls -al'
           sh 'rm -rf nginx'
         }
       }
