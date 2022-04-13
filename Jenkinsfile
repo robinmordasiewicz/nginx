@@ -87,7 +87,7 @@ pipeline {
     }
     stage('Commit new HTML') {
       when {
-      beforeAgent true
+        beforeAgent true
         expression {
           container('ubuntu') {
             sh(returnStatus: true, script: 'cd nginx && git diff --quiet --exit-code') == 1
