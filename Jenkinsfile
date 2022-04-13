@@ -64,7 +64,6 @@ pipeline {
         container('sphinx') {
           // sh '[ -f docs/requirements.txt ] && /usr/bin/pip3 install -r docs/requirements.txt -U'
           sh '/usr/bin/make -C docs clean html'
-          sh 'ls -al docs/'
         }
       }
     }
@@ -91,7 +90,9 @@ pipeline {
         allOf {
           expression {
             container('ubuntu') {
-              sh(returnStatus: true, script: 'cd nginx && git diff --quiet --exit-code') == 1
+              dir ( 'nginx' ) {
+                sh(returnStatus: true, script: 'git diff --quiet --exit-code') == 1
+              }
             }
           }
         }
