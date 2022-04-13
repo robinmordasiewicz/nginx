@@ -93,7 +93,7 @@ pipeline {
     stage('Commit new HTML') {
       when {
         beforeAgent true
-        allOf {
+        //allOf {
           //expression {
           //  container('ubuntu') {
           //    dir ( 'nginx' ) {
@@ -103,10 +103,12 @@ pipeline {
           //}
           expression {
             container('ubuntu') {
-              sh(returnStatus: true, script: '`echo "0"`') == 0
+              dir( 'nginx' ) {
+                sh(returnStatus: true, script: '`echo "0"`') == 0
+              }
             }
           }
-        }
+        //}
       }
       steps {
         dir ( 'nginx' ) {
