@@ -76,8 +76,6 @@ pipeline {
         }
         sh 'rm -rf nginx/html'
         sh 'cp -R docs/_build/html nginx/'
-        sh 'ls -al docs/_build/html'
-        sh 'ls -al nginx/html/'
       }
     }
     stage('clean up docs folder') {
@@ -88,6 +86,12 @@ pipeline {
       }
     }
     stage('Commit new HTML') {
+      when {
+      beforeAgent true
+        expression {
+          sh(returnStatus: true, script: 'git status --porcelain | grep --quiet "VERSION"') == 1
+        }
+      }
       steps {
         dir ( 'nginx' ) {
           sh 'git status' 
