@@ -88,11 +88,15 @@ pipeline {
       when {
         beforeAgent true
         allOf {
+          //expression {
+          //  container('ubuntu') {
+          //    dir ( 'nginx' ) {
+          //      sh(returnStatus: true, script: '`[[ git status --untracked-files --porcelain ]]`') == 0
+          //    }
+          //  }
+          //}
           expression {
-            container('ubuntu') {
-              dir ( 'nginx' ) {
-                sh(returnStatus: true, script: '`[[ git status --untracked-files --porcelain ]]`') == 0
-              }
+            sh(returnStatus: true, script: '`echo 0`') == 0
             }
           }
         }
