@@ -90,7 +90,7 @@ pipeline {
       beforeAgent true
         expression {
           container('ubuntu') {
-            sh(returnStatus: true, script: 'git diff --quiet --exit-code') == 1
+            sh(returnStatus: true, script: 'cd nginx && git diff --quiet --exit-code') == 1
           }
         }
       }
@@ -113,7 +113,7 @@ pipeline {
         }
       }
     }
-    stage('cleap up nginx folder') {
+    stage('clean up nginx folder') {
       steps {
         container('sphinx') {
           sh 'rm -rf nginx'
