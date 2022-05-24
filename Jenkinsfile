@@ -110,7 +110,7 @@ pipeline {
           sh 'git config user.name "Robin Mordasiewicz"'
           // sh 'git add -A'
           // sh 'git commit -m "`date`"'
-          sh 'git commit -m "`date`"'
+          sh 'git commit -am "`date`"'
           //sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
