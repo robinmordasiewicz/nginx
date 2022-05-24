@@ -76,13 +76,11 @@ pipeline {
     stage('copy html') {
       steps {
         sh 'mkdir nginx'
-        //container('ubuntu') {
           dir ( 'nginx' ) {
             git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
           }
           sh 'rm -rf nginx/html'
           sh 'cp -R docs/_build/html nginx/'
-        //}
       }
     }
     stage('clean up docs folder') {
@@ -108,9 +106,9 @@ pipeline {
           sh 'git status' 
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-          // sh 'git add -A'
-          // sh 'git commit -m "`date`"'
-          sh 'git commit -am "`date`"'
+          sh 'git add -A'
+          sh 'git commit -m "`date`"'
+          //sh 'git commit -am "`date`"'
           //sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
           withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
