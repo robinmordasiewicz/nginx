@@ -76,13 +76,13 @@ pipeline {
     stage('copy html') {
       steps {
         sh 'mkdir nginx'
-        container('ubuntu') {
+        //container('ubuntu') {
           dir ( 'nginx' ) {
             git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
           }
           sh 'rm -rf nginx/html'
           sh 'cp -R docs/_build/html nginx/'
-        }
+        //}
       }
     }
     stage('clean up docs folder') {
