@@ -93,16 +93,16 @@ pipeline {
       }
     }
     stage('Commit new HTML') {
-      when {
-        beforeAgent true
-          expression {
-            container('ubuntu') {
-              dir( 'nginx' ) {
-                sh(returnStatus: true, script: '`git ls-files --other --exclude-standard --directory | egrep -v "/$"`') == 0
-              }
-            }
-          }
-      }
+//      when {
+//        beforeAgent true
+//          expression {
+//            container('ubuntu') {
+//              dir( 'nginx' ) {
+//                sh(returnStatus: true, script: '`git ls-files --other --exclude-standard --directory | egrep -v "/$"`') == 0
+//              }
+//            }
+//          }
+//      }
       steps {
         dir ( 'nginx' ) {
           sh 'git status' 
