@@ -83,7 +83,7 @@ pipeline {
           }
           sh 'rm -rf nginx/html'
           sh 'cp -R docs/_build/html nginx/'
-          sh 'cp -a docs/intro.mp4 nginx/'
+          sh 'cp -a docs/intro.mp4 nginx/html/'
       }
     }
     stage('clean up docs folder') {
