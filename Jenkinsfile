@@ -114,8 +114,8 @@ pipeline {
             // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
             // 'git diff --quiet && git diff --staged --quiet || git push --tags'
             // sh 'git push origin `cat ../VERSION`'
-            sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
-            //sh 'git push origin main'
+            // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+            sh 'git push origin main'
           }
           sh 'git status' 
         }
