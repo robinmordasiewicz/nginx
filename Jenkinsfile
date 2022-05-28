@@ -59,9 +59,11 @@ pipeline {
     stage('merge sources') {
       steps {
         sh 'mkdir docs'
+        sh 'cp -aR tmp/docs/* docs/'
+        sh 'rm -rf docs/_static'
+        sh 'rm -rf docs/_templates'
         sh 'cp -aR tmp/theme/_static docs/'
         sh 'cp -aR tmp/theme/_templates docs/'
-        sh 'cp -aR tmp/docs/* docs/'
         sh 'rm -rf tmp/'
       }
     }
