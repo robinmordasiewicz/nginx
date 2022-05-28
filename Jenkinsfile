@@ -108,7 +108,7 @@ pipeline {
           sh 'git status' 
           sh 'git config user.email "robin@mordasiewicz.com"'
           sh 'git config user.name "Robin Mordasiewicz"'
-          // sh 'git add -A'
+          sh 'git add -A'
           // sh 'git commit -m "`date`"'
           // sh 'git commit -am "`date`"'
           sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
