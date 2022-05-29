@@ -78,9 +78,9 @@ pipeline {
   stages {
     stage('INIT') {
       steps {
-        script {
-          currentBuild.result = 'NOT_BUILT'
-        }
+//        script {
+//          currentBuild.result = 'NOT_BUILT'
+//        }
         echo "build result = ${currentBuild.result}"
         script {
           incremented = 'false'
@@ -186,6 +186,7 @@ pipeline {
         script {
           currentBuild.result = "SUCCESS"
         }
+        echo "kaniko stage result = ${currentBuild.result}"
       }
     }
     stage('remove tmp folders') {
