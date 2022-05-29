@@ -138,9 +138,9 @@ pipeline {
     }
     stage('clean up nginx folder') {
       steps {
-        container('sphinx') {
+        // container('sphinx') {
           sh 'rm -rf nginx'
-        }
+        // }
       }
     }
   }
