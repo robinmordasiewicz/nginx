@@ -83,14 +83,26 @@ pipeline {
           }
           sh 'rm -rf nginx/html'
           sh 'cp -R docs/_build/html nginx/'
-          sh 'cp -a docs/intro.mp4 nginx/html/'
+      }
+    }
+    stage('checkout assets') {
+      steps {
+        sh 'mkdir -p tmp/assets'
+        dir ( 'tmp/assets' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/intro.git'
+        }
+      }
+    }
+    stage('copy Videos') {
+      steps }
+        sh 'cp -a tmp/assets/intro.mp4 nginx/html/'
       }
     }
     stage('clean up docs folder') {
       steps {
-        container('sphinx') {
+      //  container('sphinx') {
           sh 'rm -rf docs'
-        }
+      //  }
       }
     }
     stage('Commit new HTML') {
