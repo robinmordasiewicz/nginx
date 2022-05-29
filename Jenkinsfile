@@ -82,7 +82,9 @@ pipeline {
         changeset "VERSION"
       }
       steps {
-        currentBuild.result = 'NOT_BUILT'
+        script {
+          currentBuild.result = 'NOT_BUILT'
+        }
       }
     }
     stage('INIT') {
