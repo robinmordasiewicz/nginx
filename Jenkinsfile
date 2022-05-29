@@ -1,4 +1,4 @@
-ipipeline {
+pipeline {
   options {
     disableConcurrentBuilds()
     skipDefaultCheckout(true)
