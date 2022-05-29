@@ -181,6 +181,10 @@ pipeline {
       }
     }
     stage('remove tmp folders') {
+      when {
+        beforeAgent true
+        expression {incremented == 'true'}
+      }
       steps {
         sh 'rm -rf html'
         sh 'rm -rf docs'
