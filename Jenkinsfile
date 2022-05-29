@@ -20,11 +20,28 @@ pipeline {
             - cat
             tty: true
           - name: sphinx
-            image: robinhoodis/sphinx:0.0.48
+            image: robinhoodis/sphinx:latest
             imagePullPolicy: IfNotPresent
             command:
             - cat
             tty: true
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:debug
+            imagePullPolicy: IfNotPresent
+            command:
+            - /busybox/cat
+            tty: true
+            volumeMounts:
+              - name: kaniko-secret
+                mountPath: /kaniko/.docker
+          restartPolicy: Never
+          volumes:
+            - name: kaniko-secret
+              secret:
+                secretName: regcred
+                items:
+                  - key: .dockerconfigjson
+                    path: config.json
         '''
     }
   }
@@ -33,6 +50,17 @@ pipeline {
       steps {
         cleanWs()
         checkout scm
+      }
+    }
+    stage('Increment VERSION') {
+      when {
+        beforeAgent true
+        not { changeset "VERSION" }
+      }
+      steps {
+        container('ubuntu') {
+          sh 'sh increment-version.sh'
+        }
       }
     }
     stage('mkdir tmp') {
@@ -76,67 +104,37 @@ pipeline {
     }
     stage('copy html') {
       steps {
-        sh 'mkdir nginx'
-          dir ( 'nginx' ) {
-            git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
-          }
-          sh 'rm -rf nginx/html'
-          sh 'cp -R docs/_build/html nginx/'
+        sh 'mv docs/_build/html html'
       }
     }
-    stage('checkout assets') {
+    stage('Build/Push Container') {
+      when {
+        beforeAgent true
+        expression {
+          container('ubuntu') {
+            sh(returnStatus: true, script: 'skopeo inspect docker://docker.io/robinhoodis/nginx:`cat VERSION`') == 1
+          }
+        }
+      }
       steps {
-        sh 'mkdir -p tmp/assets'
-        dir ( 'tmp/assets' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/intro.git'
+        container(name: 'kaniko', shell: '/busybox/sh') {
+          script {
+            sh '''
+            /kaniko/executor --dockerfile=Dockerfile \
+                             --context=`pwd` \
+                             --destination=robinhoodis/nginx:`cat VERSION` \
+                             --destination=robinhoodis/nginx:latest \
+                             --cache=true
+            '''
+          }
         }
       }
     }
-    stage('copy Videos') {
+    stage('remove tmp folders') {
       steps {
-        sh 'cp -a tmp/assets/intro.mp4 nginx/html/'
-      }
-    }
-    stage('clean up') {
-      steps {
+        sh 'rm -rf html'
         sh 'rm -rf docs'
         sh 'rm -rf tmp'
-      }
-    }
-    stage('Commit new HTML') {
-//      when {
-//        beforeAgent true
-//          expression {
-//            container('ubuntu') {
-//              dir( 'nginx' ) {
-//                sh(returnStatus: true, script: '`git ls-files --other --exclude-standard --directory | egrep -v "/$"`') == 0
-//              }
-//            }
-//          }
-//      }
-      steps {
-        dir ( 'nginx' ) {
-          sh 'git status' 
-          sh 'git config user.email "robin@mordasiewicz.com"'
-          sh 'git config user.name "Robin Mordasiewicz"'
-          sh 'git add -A'
-          // sh 'git commit -m "`date`"'
-          // sh 'git commit -am "`date`"'
-          sh 'git diff --quiet && git diff --staged --quiet || git commit -am "`date`"'
-          withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
-            // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
-            // 'git diff --quiet && git diff --staged --quiet || git push --tags'
-            // sh 'git push origin `cat ../VERSION`'
-            // sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
-            sh 'git push origin main'
-          }
-          sh 'git status' 
-        }
-      }
-    }
-    stage('clean up nginx folder') {
-      steps {
-        sh 'rm -rf nginx'
       }
     }
   }
