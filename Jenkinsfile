@@ -1,4 +1,5 @@
 pipeline {
+  def incremented = "false"
   options {
     disableConcurrentBuilds()
     skipDefaultCheckout(true)
@@ -92,7 +93,7 @@ pipeline {
           sh 'sh increment-version.sh'
         }
         script {
-          currentBuild.incremented = 'true'
+          incremented = 'true'
         }
       }
     }
@@ -164,7 +165,7 @@ pipeline {
     stage('Commit new VERSION') {
       when {
         beforeAgent true
-        expression {currentBuild.incremented == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'git config user.email "nginx@example.com"'
