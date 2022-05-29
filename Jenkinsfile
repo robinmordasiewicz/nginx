@@ -93,10 +93,6 @@ pipeline {
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-//        script {
-//          currentBuild.result = 'NOT_BUILT'
-//        }
-        echo "build result = ${currentBuild.result}"
         script {
           incremented = 'false'
         }
@@ -116,13 +112,12 @@ pipeline {
         script {
           incremented = 'true'
         }
-        echo "incremented = ${incremented}"
       }
     }
     stage('checkout sphinx-theme') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         sh 'mkdir -p sphinx-theme'
@@ -134,7 +129,7 @@ pipeline {
     stage('checkout docs') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         sh 'mkdir -p docs'
@@ -146,7 +141,7 @@ pipeline {
     stage('merge sources') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         sh 'cp -aR sphinx-theme/_static docs/'
@@ -157,7 +152,7 @@ pipeline {
     stage('make html') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         container('sphinx') {
@@ -168,7 +163,7 @@ pipeline {
     stage('copy html') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         sh 'mv docs/_build/html html'
@@ -178,7 +173,7 @@ pipeline {
       when {
         beforeAgent true
         allOf {
-          expression {incremented == 'true'}
+          expression {currentBuild.result != 'NOT_BUILT'}
           expression {
             container('ubuntu') {
               sh(returnStatus: true, script: 'skopeo inspect docker://docker.io/robinhoodis/nginx:`cat VERSION`') == 1
@@ -207,7 +202,7 @@ pipeline {
     stage('remove tmp folders') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         sh 'rm -rf html'
@@ -218,7 +213,7 @@ pipeline {
     stage('Commit new VERSION') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         sh 'git config user.email "nginx@example.com"'
