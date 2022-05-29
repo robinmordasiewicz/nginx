@@ -103,11 +103,6 @@ pipeline {
         sh 'rm -rf tmp'
       }
     }
-    stage('clean up nginx folder') {
-      steps {
-        sh 'rm -rf nginx'
-      }
-    }
   }
   post {
     always {
