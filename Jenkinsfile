@@ -97,6 +97,7 @@ pipeline {
         script {
           incremented = 'true'
         }
+        echo "incremented = ${incremented}"
       }
     }
     stage('checkout sphinx-theme') {
