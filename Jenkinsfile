@@ -76,7 +76,22 @@ pipeline {
     }
   }
   stages {
+    stage('bypass') {
+      when {
+        beforeAgent true
+        changeset "VERSION"
+      }
+      when {
+      }
+      steps {
+        currentBuild.result = 'NOT_BUILT'
+      }
+    }
     stage('INIT') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
       steps {
 //        script {
 //          currentBuild.result = 'NOT_BUILT'
