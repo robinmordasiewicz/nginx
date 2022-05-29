@@ -112,6 +112,7 @@ pipeline {
       steps {
         sh 'cp -aR sphinx-theme/_static docs/'
         sh 'cp -aR sphinx-theme/_templates docs/'
+        sh 'cp -aR sphinx-theme/Makefile docs/'
       }
     }
     stage('make html') {
