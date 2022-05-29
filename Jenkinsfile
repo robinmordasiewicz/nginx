@@ -79,10 +79,11 @@ pipeline {
     stage('INIT') {
       steps {
         script {
+          currentBuild.result = 'NOT_BUILT'
+        }
+        script {
           foo = 'false'
         }
-        echo "foo = ${foo}"
-        echo "fruit cakes"
         cleanWs()
         checkout scm
       }
@@ -181,6 +182,9 @@ pipeline {
             '''
           }
         }
+        script {
+          currentBuild.result = "SUCCESS"
+        }
       }
     }
     stage('remove tmp folders') {
@@ -211,6 +215,9 @@ pipeline {
           // sh 'git push origin main'
           sh 'git push origin HEAD:main'
           sh 'git push --tags'
+        }
+        script {
+          currentBuild.result = "SUCCESS"
         }
       }
     }
