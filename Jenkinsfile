@@ -1,5 +1,4 @@
 pipeline {
-  def incremented = "false"
   options {
     disableConcurrentBuilds()
     skipDefaultCheckout(true)
@@ -81,6 +80,9 @@ pipeline {
       steps {
         cleanWs()
         checkout scm
+        script {
+          def incremented = "false"
+        }
       }
     }
     stage('Increment VERSION') {
