@@ -64,7 +64,6 @@ pipeline {
         sh 'rm -rf docs/_templates'
         sh 'cp -aR tmp/theme/_static docs/'
         sh 'cp -aR tmp/theme/_templates docs/'
-        sh 'rm -rf tmp/'
       }
     }
     stage('make html') {
@@ -98,11 +97,10 @@ pipeline {
         sh 'cp -a tmp/assets/intro.mp4 nginx/html/'
       }
     }
-    stage('clean up docs folder') {
+    stage('clean up') {
       steps {
-      //  container('sphinx') {
-          sh 'rm -rf docs'
-      //  }
+        sh 'rm -rf docs'
+        sh 'rm -rf tmp'
       }
     }
     stage('Commit new HTML') {
@@ -138,9 +136,7 @@ pipeline {
     }
     stage('clean up nginx folder') {
       steps {
-        // container('sphinx') {
-          sh 'rm -rf nginx'
-        // }
+        sh 'rm -rf nginx'
       }
     }
   }
