@@ -81,8 +81,9 @@ pipeline {
         cleanWs()
         checkout scm
         script {
-          def incremented = "false"
+          def currentBuild.incremented = 'false'
         }
+        echo "currentBuild.incremented = ${currentBuild.incremented}"
       }
     }
     stage('Increment VERSION') {
@@ -95,15 +96,15 @@ pipeline {
           sh 'sh increment-version.sh'
         }
         script {
-          incremented = 'true'
+          currentBuild.incremented = 'true'
         }
-        echo "incremented = ${incremented}"
+        echo "currentBuild.incremented = ${currentBuild.incremented}"
       }
     }
     stage('checkout sphinx-theme') {
 //      when {
 //        beforeAgent true
-//        expression {incremented == 'true'}
+//        expression {currentBuild.incremented == 'true'}
 //      }
       steps {
         sh 'mkdir -p sphinx-theme'
@@ -115,7 +116,7 @@ pipeline {
     stage('checkout docs') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         sh 'mkdir -p docs'
@@ -127,7 +128,7 @@ pipeline {
     stage('merge sources') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         sh 'cp -aR sphinx-theme/_static docs/'
@@ -138,7 +139,7 @@ pipeline {
     stage('make html') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         container('sphinx') {
@@ -149,7 +150,7 @@ pipeline {
     stage('copy html') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         sh 'mv docs/_build/html html'
@@ -159,7 +160,7 @@ pipeline {
       when {
         beforeAgent true
         allOf {
-          expression {incremented == 'true'}
+          expression {currentBuild.incremented == 'true'}
           expression {
             container('ubuntu') {
               sh(returnStatus: true, script: 'skopeo inspect docker://docker.io/robinhoodis/nginx:`cat VERSION`') == 1
@@ -184,7 +185,7 @@ pipeline {
     stage('remove tmp folders') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         sh 'rm -rf html'
@@ -195,7 +196,7 @@ pipeline {
     stage('Commit new VERSION') {
       when {
         beforeAgent true
-        expression {incremented == 'true'}
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         sh 'git config user.email "nginx@example.com"'
