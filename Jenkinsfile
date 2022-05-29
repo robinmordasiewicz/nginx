@@ -119,10 +119,6 @@ pipeline {
     stage('make html') {
       steps {
         container('sphinx') {
-          sh 'ls -al'
-          sh 'pwd'
-          sh '/usr/bin/sphinx-build --version'
-          sh '/usr/share/sphinx/scripts/python3/sphinx-build --version'
           sh 'make -C docs clean html'
         }
       }
