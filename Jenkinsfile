@@ -92,17 +92,6 @@ pipeline {
         }
       }
     }
-    stage('copy Videos') {
-      steps }
-        sh 'cp -a tmp/assets/intro.mp4 nginx/html/'
-      }
-    }
-    stage('clean up') {
-      steps {
-        sh 'rm -rf docs'
-        sh 'rm -rf tmp'
-      }
-    }
   }
   post {
     always {
