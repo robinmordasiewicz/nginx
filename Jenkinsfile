@@ -93,9 +93,6 @@ pipeline {
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-        script {
-          incremented = 'false'
-        }
         cleanWs()
         checkout scm
       }
@@ -108,9 +105,6 @@ pipeline {
       steps {
         container('ubuntu') {
           sh 'sh increment-version.sh'
-        }
-        script {
-          incremented = 'true'
         }
       }
     }
