@@ -1,2 +1,5 @@
 nginx/
 docs/
+*~
+*.swp
+*.swo
