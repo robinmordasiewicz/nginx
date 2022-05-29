@@ -79,7 +79,7 @@ pipeline {
     stage('INIT') {
       steps {
         script {
-          currentBuild.result = 'SUCCESS'
+          currentBuild.result = 'NOT_BUILT'
         }
         echo "build result = ${currentBuild.result}"
         script {
