@@ -81,7 +81,8 @@ pipeline {
         script {
           currentBuild.incremented = 'false'
         }
-        echo "currentBuild.incremented = ${currentBuild.incremented}"
+       // echo "currentBuild.incremented = ${currentBuild.incremented}"
+        echo "fruit cakes"
         cleanWs()
         checkout scm
       }
