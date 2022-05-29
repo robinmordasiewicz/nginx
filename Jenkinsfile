@@ -78,9 +78,9 @@ pipeline {
   stages {
     stage('INIT') {
       steps {
-        script {
-          currentBuild.incremented = 'false'
-        }
+        //script {
+        //  currentBuild.incremented = 'false'
+        //}
        // echo "currentBuild.incremented = ${currentBuild.incremented}"
         echo "fruit cakes"
         cleanWs()
