@@ -91,6 +91,9 @@ pipeline {
         container('ubuntu') {
           sh 'sh increment-version.sh'
         }
+        script {
+          currentBuild.incremented = 'true'
+        }
       }
     }
     stage('checkout sphinx-theme') {
@@ -161,7 +164,7 @@ pipeline {
     stage('Commit new VERSION') {
       when {
         beforeAgent true
-        not { changeset "VERSION" }
+        expression {currentBuild.incremented == 'true'}
       }
       steps {
         sh 'git config user.email "nginx@example.com"'
