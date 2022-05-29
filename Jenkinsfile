@@ -81,7 +81,7 @@ pipeline {
         cleanWs()
         checkout scm
         script {
-          def currentBuild.incremented = 'false'
+          currentBuild.incremented = 'false'
         }
         echo "currentBuild.incremented = ${currentBuild.incremented}"
       }
