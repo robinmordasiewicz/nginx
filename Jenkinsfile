@@ -100,6 +100,10 @@ pipeline {
       }
     }
     stage('checkout sphinx-theme') {
+      when {
+        beforeAgent true
+        expression {incremented == 'true'}
+      }
       steps {
         sh 'mkdir -p sphinx-theme'
         dir ( 'sphinx-theme' ) {
@@ -108,6 +112,10 @@ pipeline {
       }
     }
     stage('checkout docs') {
+      when {
+        beforeAgent true
+        expression {incremented == 'true'}
+      }
       steps {
         sh 'mkdir -p docs'
         dir ( 'docs' ) {
@@ -116,6 +124,10 @@ pipeline {
       }
     }
     stage('merge sources') {
+      when {
+        beforeAgent true
+        expression {incremented == 'true'}
+      }
       steps {
         sh 'cp -aR sphinx-theme/_static docs/'
         sh 'cp -aR sphinx-theme/_templates docs/'
@@ -123,6 +135,10 @@ pipeline {
       }
     }
     stage('make html') {
+      when {
+        beforeAgent true
+        expression {incremented == 'true'}
+      }
       steps {
         container('sphinx') {
           sh 'make -C docs clean html'
@@ -130,6 +146,10 @@ pipeline {
       }
     }
     stage('copy html') {
+      when {
+        beforeAgent true
+        expression {incremented == 'true'}
+      }
       steps {
         sh 'mv docs/_build/html html'
       }
@@ -137,9 +157,12 @@ pipeline {
     stage('Build/Push Container') {
       when {
         beforeAgent true
-        expression {
-          container('ubuntu') {
-            sh(returnStatus: true, script: 'skopeo inspect docker://docker.io/robinhoodis/nginx:`cat VERSION`') == 1
+        allOf {
+          expression {incremented == 'true'}
+          expression {
+            container('ubuntu') {
+              sh(returnStatus: true, script: 'skopeo inspect docker://docker.io/robinhoodis/nginx:`cat VERSION`') == 1
+            }
           }
         }
       }
