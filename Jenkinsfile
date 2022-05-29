@@ -78,10 +78,10 @@ pipeline {
   stages {
     stage('INIT') {
       steps {
-        //script {
-        //  currentBuild.incremented = 'false'
-        //}
-       // echo "currentBuild.incremented = ${currentBuild.incremented}"
+        script {
+          currentBuild.incremented = 'false'
+        }
+        echo "currentBuild.incremented = ${currentBuild.incremented}"
         echo "fruit cakes"
         cleanWs()
         checkout scm
