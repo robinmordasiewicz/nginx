@@ -78,12 +78,12 @@ pipeline {
   stages {
     stage('INIT') {
       steps {
-        cleanWs()
-        checkout scm
         script {
           currentBuild.incremented = 'false'
         }
         echo "currentBuild.incremented = ${currentBuild.incremented}"
+        cleanWs()
+        checkout scm
       }
     }
     stage('Increment VERSION') {
@@ -102,10 +102,10 @@ pipeline {
       }
     }
     stage('checkout sphinx-theme') {
-//      when {
-//        beforeAgent true
-//        expression {currentBuild.incremented == 'true'}
-//      }
+      when {
+        beforeAgent true
+        expression {currentBuild.incremented == 'true'}
+      }
       steps {
         sh 'mkdir -p sphinx-theme'
         dir ( 'sphinx-theme' ) {
