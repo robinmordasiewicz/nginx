@@ -107,7 +107,7 @@ pipeline {
     stage('Increment VERSION') {
       when {
         beforeAgent true
-        not { changeset "VERSION" }
+        expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
         container('ubuntu') {
