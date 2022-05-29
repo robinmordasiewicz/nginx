@@ -137,6 +137,27 @@ pipeline {
         sh 'rm -rf tmp'
       }
     }
+    stage('Commit new VERSION') {
+      when {
+        beforeAgent true
+        not { changeset "VERSION" }
+      }
+      steps {
+        sh 'git config user.email "nginx@example.com"'
+        sh 'git config user.name "nginx pipeline"'
+        sh 'git add VERSION'
+        sh 'git commit -m "`cat VERSION`"'
+        // sh 'git add VERSION && git diff --quiet && git diff --staged --quiet || git commit -m "`cat VERSION`"'
+        // sh 'git tag -a `cat VERSION` -m "`cat VERSION`" || echo "Tag: `cat VERSION` already exists"'
+        withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
+          //sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+          // sh 'git push origin main'
+          sh 'git push origin HEAD:main'
+          sh 'git push --tags'
+        }
+      }
+    }
+  }
   }
   post {
     always {
