@@ -82,7 +82,7 @@ pipeline {
           currentBuild.result = 'NOT_BUILT'
         }
         script {
-          foo = 'false'
+          incremented = 'false'
         }
         cleanWs()
         checkout scm
@@ -98,15 +98,15 @@ pipeline {
           sh 'sh increment-version.sh'
         }
         script {
-          foo = 'true'
+          incremented = 'true'
         }
-        echo "foo = ${foo}"
+        echo "incremented = ${incremented}"
       }
     }
     stage('checkout sphinx-theme') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'mkdir -p sphinx-theme'
@@ -118,7 +118,7 @@ pipeline {
     stage('checkout docs') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'mkdir -p docs'
@@ -130,7 +130,7 @@ pipeline {
     stage('merge sources') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'cp -aR sphinx-theme/_static docs/'
@@ -141,7 +141,7 @@ pipeline {
     stage('make html') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         container('sphinx') {
@@ -152,7 +152,7 @@ pipeline {
     stage('copy html') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'mv docs/_build/html html'
@@ -162,7 +162,7 @@ pipeline {
       when {
         beforeAgent true
         allOf {
-          expression {foo == 'true'}
+          expression {incremented == 'true'}
           expression {
             container('ubuntu') {
               sh(returnStatus: true, script: 'skopeo inspect docker://docker.io/robinhoodis/nginx:`cat VERSION`') == 1
@@ -190,7 +190,7 @@ pipeline {
     stage('remove tmp folders') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'rm -rf html'
@@ -201,7 +201,7 @@ pipeline {
     stage('Commit new VERSION') {
       when {
         beforeAgent true
-        expression {foo == 'true'}
+        expression {incremented == 'true'}
       }
       steps {
         sh 'git config user.email "nginx@example.com"'
@@ -219,6 +219,11 @@ pipeline {
         script {
           currentBuild.result = "SUCCESS"
         }
+      }
+    }
+    stage('show build result') {
+      steps {
+        echo "build result = ${currentBuild.result}"
       }
     }
   }
