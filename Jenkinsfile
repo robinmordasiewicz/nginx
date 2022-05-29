@@ -81,8 +81,6 @@ pipeline {
         beforeAgent true
         changeset "VERSION"
       }
-      when {
-      }
       steps {
         currentBuild.result = 'NOT_BUILT'
       }
