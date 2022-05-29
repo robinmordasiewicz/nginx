@@ -219,6 +219,7 @@ pipeline {
         script {
           currentBuild.result = "SUCCESS"
         }
+        echo "build result = ${currentBuild.result}"
       }
     }
     stage('show build result') {
