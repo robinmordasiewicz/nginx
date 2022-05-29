@@ -101,10 +101,10 @@ pipeline {
       }
     }
     stage('checkout sphinx-theme') {
-      when {
-        beforeAgent true
-        expression {incremented == 'true'}
-      }
+//      when {
+//        beforeAgent true
+//        expression {incremented == 'true'}
+//      }
       steps {
         sh 'mkdir -p sphinx-theme'
         dir ( 'sphinx-theme' ) {
