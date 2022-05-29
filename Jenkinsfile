@@ -25,6 +25,7 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: diagrams
             image: robinhoodis/diagrams:latest
             imagePullPolicy: Always
             command:
