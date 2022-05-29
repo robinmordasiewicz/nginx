@@ -66,5 +66,52 @@ pipeline {
         sh 'cp -aR tmp/theme/_templates docs/'
       }
     }
+    stage('make html') {
+      steps {
+        container('sphinx') {
+          // sh '[ -f docs/requirements.txt ] && /usr/bin/pip3 install -r docs/requirements.txt -U'
+          sh '/usr/bin/make -C docs clean html'
+        }
+      }
+    }
+    stage('copy html') {
+      steps {
+        sh 'mkdir nginx'
+          dir ( 'nginx' ) {
+            git branch: 'main', url: 'https://github.com/robinmordasiewicz/nginx.git'
+          }
+          sh 'rm -rf nginx/html'
+          sh 'cp -R docs/_build/html nginx/'
+      }
+    }
+    stage('checkout assets') {
+      steps {
+        sh 'mkdir -p tmp/assets'
+        dir ( 'tmp/assets' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/intro.git'
+        }
+      }
+    }
+    stage('copy Videos') {
+      steps }
+        sh 'cp -a tmp/assets/intro.mp4 nginx/html/'
+      }
+    }
+    stage('clean up') {
+      steps {
+        sh 'rm -rf docs'
+        sh 'rm -rf tmp'
+      }
+    }
+  }
+  post {
+    always {
+      cleanWs(cleanWhenNotBuilt: false,
+            deleteDirs: true,
+            disableDeferredWipeout: true,
+            notFailBuild: true,
+            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                       [pattern: '.propsfile', type: 'EXCLUDE']])
+    }
   }
 }
