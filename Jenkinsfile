@@ -25,6 +25,35 @@ pipeline {
             command:
             - cat
             tty: true
+            image: robinhoodis/diagrams:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
+          - name: mermaid-cli
+            image: robinhoodis/mermaid-cli:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
+          - name: marp
+            image: robinhoodis/marp:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
+          - name: imagemagick
+            image: robinhoodis/imagemagick:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
+          - name: melt
+            image: robinhoodis/melt:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
           - name: kaniko
             image: gcr.io/kaniko-project/executor:debug
             imagePullPolicy: IfNotPresent
@@ -63,35 +92,26 @@ pipeline {
         }
       }
     }
-    stage('mkdir tmp') {
-      steps {
-        sh 'mkdir tmp'
-      }
-    }
     stage('checkout sphinx-theme') {
       steps {
-        sh 'mkdir -p tmp/theme'
-        dir ( 'tmp/theme' ) {
+        sh 'mkdir -p sphinx-theme'
+        dir ( 'sphinx-theme' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/sphinx-theme.git'
         }
       }
     }
     stage('checkout docs') {
       steps {
-        sh 'mkdir -p tmp/docs'
-        dir ( 'tmp/docs' ) {
+        sh 'mkdir -p docs'
+        dir ( 'docs' ) {
           git branch: 'main', url: 'https://github.com/robinmordasiewicz/f5-cnf-lab.git'
         }
       }
     }
     stage('merge sources') {
       steps {
-        sh 'mkdir docs'
-        sh 'cp -aR tmp/docs/* docs/'
-        sh 'rm -rf docs/_static'
-        sh 'rm -rf docs/_templates'
-        sh 'cp -aR tmp/theme/_static docs/'
-        sh 'cp -aR tmp/theme/_templates docs/'
+        sh 'cp -aR sphinx-theme/_static docs/'
+        sh 'cp -aR sphinx-theme/_templates docs/'
       }
     }
     stage('make html') {
@@ -134,7 +154,7 @@ pipeline {
       steps {
         sh 'rm -rf html'
         sh 'rm -rf docs'
-        sh 'rm -rf tmp'
+        sh 'rm -rf sphinx-theme'
       }
     }
     stage('Commit new VERSION') {
