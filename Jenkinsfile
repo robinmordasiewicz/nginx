@@ -119,7 +119,7 @@ pipeline {
     stage('make html') {
       steps {
         container('sphinx') {
-          sh '/usr/bin/make -C docs clean html'
+          sh 'make -C docs clean html'
         }
       }
     }
