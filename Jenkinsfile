@@ -174,6 +174,28 @@ pipeline {
         }
       }
     }
+    stage('Mermaid Diagrams') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('mermaid') {
+          sh 'sh mermaid.sh'
+        }
+      }
+    }
+    stage('Python Diagrams') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('diagrams') {
+          sh 'sh diagrams.sh'
+        }
+      }
+    }
     stage('Videos') {
       when {
         beforeAgent true
