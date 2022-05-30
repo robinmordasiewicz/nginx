@@ -163,6 +163,18 @@ pipeline {
         sh 'mv docs/_build/html html'
       }
     }
+    stage('Images') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('imagemagick') {
+          sh 'source docs/index.conf && source sphinx-theme/theme.conf && sphinx-theme/imagemagick.sh'
+          sh 'ls -la'
+        }
+      }
+    }
     stage('Build/Push Container') {
       when {
         beforeAgent true
