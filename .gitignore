@@ -1,5 +1,8 @@
 html/
+sphinx-theme/
 docs/
 *~
 *.swp
 *.swo
+.cache/
+*.png
