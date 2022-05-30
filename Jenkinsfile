@@ -170,7 +170,8 @@ pipeline {
       }
       steps {
         container('imagemagick') {
-          sh 'imagemagick.sh'
+          sh 'ls -al'
+          sh 'sh imagemagick.sh'
         }
       }
     }
