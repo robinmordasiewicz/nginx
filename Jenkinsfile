@@ -209,6 +209,17 @@ pipeline {
         }
       }
     }
+    stage('PPTX') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('marp') {
+          sh 'sh marp.sh'
+        }
+      }
+    }
     stage('Build/Push Container') {
       when {
         beforeAgent true
