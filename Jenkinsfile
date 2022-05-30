@@ -193,6 +193,7 @@ pipeline {
       steps {
         container('diagrams') {
           sh 'sh diagrams.sh'
+          sh 'mv docs/diagram1.png html/
         }
       }
     }
