@@ -170,9 +170,18 @@ pipeline {
       }
       steps {
         container('imagemagick') {
-          sh 'ls -la'
-          sh 'sphinx-theme/imagemagick.sh'
-          sh 'ls -la'
+          sh 'imagemagick.sh'
+        }
+      }
+    }
+    stage('Videos') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('melt') {
+          sh 'sphinx-theme/melt.sh'
         }
       }
     }
