@@ -170,7 +170,8 @@ pipeline {
       }
       steps {
         container('imagemagick') {
-          sh '. docs/index.conf && . sphinx-theme/theme.conf && sphinx-theme/imagemagick.sh'
+          sh 'ls -la'
+          sh 'sphinx-theme/imagemagick.sh'
           sh 'ls -la'
         }
       }
