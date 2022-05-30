@@ -37,8 +37,8 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: marp
-            image: robinhoodis/marp:latest
+          - name: marp-cli
+            image: robinhoodis/marp-cli:latest
             imagePullPolicy: Always
             command:
             - cat
@@ -215,8 +215,8 @@ pipeline {
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-        container('marp') {
-          sh 'sh marp.sh'
+        container('marp-cli') {
+          sh 'sh marp-cli.sh'
         }
       }
     }
