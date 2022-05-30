@@ -1,6 +1,8 @@
 html/
 sphinx-theme/
 docs/
+.bash_history
+.local/
 *~
 *.swp
 *.swo
