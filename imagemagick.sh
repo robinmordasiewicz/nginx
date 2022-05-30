@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 
-source sphinx-theme/theme.conf
-source docs/index.conf
+. sphinx-theme/theme.conf
+. docs/index.conf
 
 #convert ${BACKGROUND} -verbose -strip -resize 1920x1080 -quality 100 -density 72x72 -units pixelsperinch tmp.png
 
