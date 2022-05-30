@@ -180,8 +180,8 @@ pipeline {
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-        container('mermaid') {
-          sh 'sh mermaid.sh'
+        container('mermaid-cli') {
+          sh 'sh mermaid-cli.sh'
         }
       }
     }
