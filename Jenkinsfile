@@ -170,7 +170,6 @@ pipeline {
       }
       steps {
         container('imagemagick') {
-          sh 'ls -al'
           sh 'sh imagemagick.sh'
         }
       }
@@ -182,7 +181,7 @@ pipeline {
       }
       steps {
         container('melt') {
-          sh 'sphinx-theme/melt.sh'
+          sh 'sh melt.sh'
         }
       }
     }
