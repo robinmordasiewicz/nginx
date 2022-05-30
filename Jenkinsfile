@@ -4,7 +4,7 @@ pipeline {
     skipDefaultCheckout(true)
   }
   triggers {
-    upstream(upstreamProjects: "sphinx,sphinx-theme,f5-cnf-lab", threshold: hudson.model.Result.SUCCESS)
+    upstream(upstreamProjects: "sphinx,sphinx-theme,f5-cnf-lab,marp-cli", threshold: hudson.model.Result.SUCCESS)
   }
   agent {
     kubernetes {
