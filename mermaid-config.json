@@ -1,8 +1,0 @@
-{
-  "securityLevel": "loose",
-  "flowchart": {
-    "htmlLabels": true,
-    "curve": "basis"
-  },
-  "theme": "default"
-}
