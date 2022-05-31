@@ -9,9 +9,8 @@ docs/
 .cache/
 *.png
 .ash_history
-marp-cli.html
 node_modules/.package-lock.json
 package-lock.json
 package.json
 intro.mlt
-intro.mp4
+*.mp4
