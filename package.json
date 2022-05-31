@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "v8-compile-cache": "^2.3.0"
+  }
+}
