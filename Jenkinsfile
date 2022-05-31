@@ -150,7 +150,7 @@ pipeline {
       }
       steps {
         container('sphinx') {
-          sh 'make -C docs clean html'
+          sh 'sh sphinx.sh'
         }
       }
     }
