@@ -8,3 +8,8 @@ docs/
 *.swo
 .cache/
 *.png
+.ash_history
+marp-cli.html
+node_modules/.package-lock.json
+package-lock.json
+package.json
