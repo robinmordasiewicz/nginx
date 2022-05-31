@@ -11,5 +11,7 @@ fi
 
 cd docs
 python3 intro-diagram.py
-mv diagram1.png ../diagram1.png
 
+if [ -f diagram1.png ];then
+  mv diagram1.png ../diagram1.png
+fi
