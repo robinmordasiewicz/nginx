@@ -26,5 +26,6 @@ docker run --pull=always --name diagrams --rm -t -v "$PWD":"/home/ubuntu" --work
 docker run --pull=always --name mermaid-cli --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/mermaid-cli:latest ./mermaid-cli.sh
 docker run --pull=always --name melt --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/melt:latest ./melt.sh
 docker run --pull=always --name sphinx --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/sphinx:latest ./sphinx.sh
+mv docs/_build/html/* html/
 docker run --pull=always --name marp-cli --rm -it -v "$PWD":"/home/marp/app" --workdir "/home/marp/app" robinhoodis/marp:latest ./marp-cli.sh
 

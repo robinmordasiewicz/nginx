@@ -160,7 +160,7 @@ pipeline {
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-        sh 'mv docs/_build/html html'
+        sh 'mv docs/_build/html/* html/'
       }
     }
     stage('Images') {
