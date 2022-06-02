@@ -1,5 +1,4 @@
-# make-html-pipeline
+# nginx
 
-pipeline job for making html
+pipeline job for making nginx container
 
-.
