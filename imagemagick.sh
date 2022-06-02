@@ -6,7 +6,6 @@
 
 #convert ${BACKGROUND} -verbose -strip -resize 1920x1080 -quality 100 -density 72x72 -units pixelsperinch tmp.png
 
-
 convert -size 1920x1080 xc:'#0F487A' tmp.png
 convert tmp.png -fill '#F2B819' -stroke '#F2B819' -draw "rectangle 0,1065 1920,1080" yellow.png
 convert yellow.png -fill '#DB0021' -stroke '#DB0021' -draw "rectangle 770,1065 1920,1080" yellow-red.png
@@ -22,8 +21,8 @@ convert -font Arial-Bold -pointsize 31 -fill ${INTROCAPTIONFONTCOLOR} -annotate 
 convert -font Arial-Bold -pointsize 31 -fill ${INTROCAPTIONFONTCOLOR} -annotate +72+728 "${position}" title-caption-presenter.png title-caption-presenter-position.png
 convert -font Arial-Bold -pointsize 31 -fill ${INTROCAPTIONFONTCOLOR} -annotate +72+863 "${version}" title-caption-presenter-position.png title-caption-presenter-position-version.png
 
-#convert title-caption-presenter-position-version.png theme/${LOGO} -gravity northeast -geometry 130x130+110+110 -composite intro.png
-convert title-caption-presenter-position-version.png theme/${LOGO} -gravity northwest -geometry 95x95+75+75 -composite intro.png
+#convert title-caption-presenter-position-version.png theme/${LOGO} -gravity northeast -geometry 130x130+110+110 -composite index.png
+convert title-caption-presenter-position-version.png theme/${LOGO} -gravity northwest -geometry 95x95+75+75 -composite index.png
 convert yellow-red-orange-cyan-blue.png theme/${LOGO} -gravity center -geometry 380x380-0-19 -composite outro.png
 
 rm yellow.png yellow-red.png yellow-red-orange.png yellow-red-orange-cyan.png yellow-red-orange-cyan-blue.png hero-yellow-red-orange-cyan-blue.png title-caption.png title.png tmp.png title-caption-presenter.png title-caption-presenter-position.png title-caption-presenter-position-version.png
