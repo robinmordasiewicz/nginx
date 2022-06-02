@@ -205,7 +205,6 @@ pipeline {
       steps {
         container('melt') {
           sh 'sh melt.sh'
-          // sh 'mv intro.mp4 html/'
         }
       }
     }
