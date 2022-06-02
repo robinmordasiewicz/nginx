@@ -27,5 +27,5 @@ docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --w
 #docker run --pull=always --name melt --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/melt:latest ./melt.sh
 #docker run --pull=always --name sphinx --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/sphinx:latest ./sphinx.sh
 #mv docs/_build/html/* html/
-#docker run --pull=always --name marp-cli --rm -t -v "$PWD":"/home/marp/app" --workdir "/home/marp/app" robinhoodis/marp-cli:latest ./marp-cli.sh
+docker run --pull=always --name marp-cli --rm -t -v "$PWD":"/home/marp/app" --workdir "/home/marp/app" robinhoodis/marp-cli:latest ./marp-cli.sh
 
