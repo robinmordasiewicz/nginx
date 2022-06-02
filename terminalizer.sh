@@ -1,4 +1,6 @@
 #!/bin/bash -i
+#
+
 if [ -z "$STEP" ]
 then
     STEP=1
