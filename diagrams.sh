@@ -10,7 +10,7 @@ if [ -f docs/diagram1.png ];then
 fi
 
 cd docs
-python3 intro-diagram.py
+python3 index-diagram.py
 
 if [ -f diagram1.png ];then
   mv diagram1.png ../diagram1.png
