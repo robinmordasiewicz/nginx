@@ -3,10 +3,10 @@
 
 [ ! -d "html" ] && mkdir html
 
-[ ! -d "sphinx-theme" ] && mkdir sphinx-theme
-cd sphinx-theme
+[ ! -d "theme" ] && mkdir theme
+cd theme
 git init
-git remote add origin https://github.com/robinmordasiewicz/sphinx-theme.git
+git remote add origin https://github.com/robinmordasiewicz/theme.git
 git pull origin main
 cd -
 
@@ -17,9 +17,9 @@ git remote add origin https://github.com/robinmordasiewicz/f5-cnf-lab.git
 git pull origin main
 cd -
 
-cp -aR sphinx-theme/_static docs/
-cp -aR sphinx-theme/_templates docs/
-cp -aR sphinx-theme/Makefile docs/
+cp -aR theme/_static docs/
+cp -aR theme/_templates docs/
+cp -aR theme/Makefile docs/
 
 #docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/imagemagick:latest ./imagemagick.sh
 #docker run --pull=always --name diagrams --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/diagrams:latest ./diagrams.sh

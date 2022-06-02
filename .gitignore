@@ -1,5 +1,5 @@
 html/
-sphinx-theme/
+theme/
 docs/
 .bash_history
 .local/
