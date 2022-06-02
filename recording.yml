@@ -1,0 +1,67 @@
+records:
+  - delay: 813
+    content: 'ubuntu@7d960f9cd7ee:~$ '
+  - delay: 8178
+    content: exit
+  - delay: 1167
+    content: "\b\b\b\b\e[K"
+  - delay: 9638
+    content: l
+  - delay: 38
+    content: s
+  - delay: 165
+    content: '-'
+  - delay: 7
+    content: a
+  - delay: 65
+    content: l
+  - delay: 56
+    content: ' '
+  - delay: 823
+    content: "\b \b"
+  - delay: 127
+    content: "\b \b"
+  - delay: 129
+    content: "\b \b"
+  - delay: 119
+    content: "\b \b"
+  - delay: 139
+    content: ' '
+  - delay: 141
+    content: '-'
+  - delay: 111
+    content: a
+  - delay: 113
+    content: l
+  - delay: 168
+    content: "\r\n"
+  - delay: 38
+    content: "total 444\r\ndrwx------ 29 ubuntu ubuntu    928 Jun  2 18:23 .\r\ndrwxr-xr-x  1 root   root     4096 Apr 18 17:55 ..\r\n-rw-------  1 ubuntu ubuntu    142 Jun  2 18:17 .bash_history\r\ndrwxr-xr-x  3 ubuntu ubuntu     96 Jun  2 13:36 .cache\r\ndrwxr-xr-x 15 ubuntu ubuntu    480 Jun  2 18:18 .git\r\n-rw-r--r--  1 ubuntu ubuntu    187 Jun  2 18:18 .gitignore\r\ndrwxr-xr-x  3 ubuntu ubuntu     96 Jun  2 18:17 .terminalizer\r\n-rw-r--r--  1 ubuntu ubuntu   1105 May 31 12:45 .viminfo\r\n-rw-r--r--  1 ubuntu ubuntu     99 May 31 12:45 Dockerfile\r\n-rw-r--r--  1 ubuntu ubuntu   8141 Jun  2 17:25 Jenkinsfile\r\n-rw-r--r--  1 ubuntu ubuntu     50 Jun  2 13:51 README.md\r\n-rw-r--r--  1 ubuntu ubuntu      7 Jun  2 17:25 VERSION\r\n-rwxr-xr-x  1 ubuntu ubuntu   1493 Jun  2 18:23 build.sh\r\n-rw-r--r--  1 ubuntu ubuntu  71412 Jun  2 16:04 diagram1.png\r\n-rw-r--r--  1 ubuntu ubuntu  41625 Jun  2 12:39 diagram2.png\r\n-rwxr-xr-x  1 ubuntu ubuntu    224 Jun  2 16:03 diagrams.sh\r\ndrwxr-xr-x 21 ubuntu ubuntu    672 Jun  2 16:04 docs\r\ndrwxr-xr-x  6 ubuntu ubuntu    192 Jun  2 16:04 html\r\n-rwxr-xr-x  1 ubuntu ubuntu   2408 Jun  2 13:38 imagemagick.sh\r\n-rwxr-xr-x  1 ubuntu ubuntu    241 May 31 12:45 increment-version.sh\r\n-rw-------  1 ubuntu ubuntu  17871 Jun  2 16:04 index.mlt\r\n-rw-r--r--  1 ubuntu ubuntu 191104 Jun  2 16:04 index.png\r\n-rwxr-xr-x  1 ubuntu ubuntu    357 Jun  2 15:24 marp-cli.sh\r\n-rwxr-xr-x  1 ubuntu ubuntu   1229 Jun  2 12:21 melt.sh\r\n-rwxr-xr-x  1 ubuntu ubuntu    190 Jun  2 12:38 mermaid-cli.sh\r\n-rw-r--r--  1 ubuntu ubuntu  42987 Jun  2 16:04 outro.png\r\n-rwxr-xr-x  1 ubuntu ubuntu     70 May 31 12:53 sphinx.sh\r\n-rw-r--r--  1 ubuntu ubuntu    211 Jun  2 17:38 terminalizer.sh\r\ndrwxr-xr-x 16 ubuntu ubuntu    512 Jun  2 16:04 theme\r\nubuntu@7d960f9cd7ee:~$ "
+  - delay: 1097
+    content: p
+  - delay: 79
+    content: w
+  - delay: 65
+    content: d
+  - delay: 175
+    content: "\r\n/home/ubuntu\r\nubuntu@7d960f9cd7ee:~$ "
+  - delay: 1257
+    content: d
+  - delay: 5585
+    content: "\a"
+  - delay: 507
+    content: "\b \b"
+  - delay: 480
+    content: "\a"
+  - delay: 162
+    content: "\a"
+  - delay: 2498
+    content: e
+  - delay: 62
+    content: x
+  - delay: 152
+    content: i
+  - delay: 120
+    content: t
+  - delay: 2531
+    content: "\r\nlogout\r\n"
