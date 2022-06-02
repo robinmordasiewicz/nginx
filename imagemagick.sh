@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 
+[ ! -d "html" ] && mkdir html
+
 . theme/theme.conf
 . docs/index.conf
 
@@ -26,3 +28,5 @@ convert title-caption-presenter-position-version.png theme/${LOGO} -gravity nort
 convert yellow-red-orange-cyan-blue.png theme/${LOGO} -gravity center -geometry 380x380-0-19 -composite outro.png
 
 rm yellow.png yellow-red.png yellow-red-orange.png yellow-red-orange-cyan.png yellow-red-orange-cyan-blue.png hero-yellow-red-orange-cyan-blue.png title-caption.png title.png tmp.png title-caption-presenter.png title-caption-presenter-position.png title-caption-presenter-position-version.png
+
+cp index.png html/
