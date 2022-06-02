@@ -2,6 +2,7 @@ html/
 theme/
 docs/
 node_modules/
+.terminalizer/
 .bash_history
 .local/
 *~
