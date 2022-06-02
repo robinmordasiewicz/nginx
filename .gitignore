@@ -1,6 +1,7 @@
 html/
 theme/
 docs/
+node_modules/
 .bash_history
 .local/
 *~
