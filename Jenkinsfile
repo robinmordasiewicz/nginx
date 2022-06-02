@@ -13,6 +13,12 @@ pipeline {
         kind: Pod
         spec:
           containers:
+          - name: terminalizer
+            image: robinhoodis/terminalizer:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
           - name: ubuntu
             image: robinhoodis/ubuntu:latest
             imagePullPolicy: Always
@@ -161,6 +167,17 @@ pipeline {
       }
       steps {
         sh 'mv docs/_build/html/* html/'
+      }
+    }
+    stage('terminalizer') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('terminalizer') {
+          sh 'sh terminalizer.sh'
+        }
       }
     }
     stage('Images') {
