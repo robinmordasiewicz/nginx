@@ -4,7 +4,7 @@ pipeline {
     skipDefaultCheckout(true)
   }
   triggers {
-    upstream(upstreamProjects: "sphinx,sphinx-theme,f5-cnf-lab,marp-cli", threshold: hudson.model.Result.SUCCESS)
+    upstream(upstreamProjects: "sphinx,theme,f5-cnf-lab,marp-cli", threshold: hudson.model.Result.SUCCESS)
   }
   agent {
     kubernetes {
@@ -108,15 +108,15 @@ pipeline {
         }
       }
     }
-    stage('checkout sphinx-theme') {
+    stage('checkout theme') {
       when {
         beforeAgent true
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-        sh 'mkdir -p sphinx-theme'
-        dir ( 'sphinx-theme' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/sphinx-theme.git'
+        sh 'mkdir -p theme'
+        dir ( 'theme' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/theme.git'
         }
       }
     }
@@ -138,9 +138,9 @@ pipeline {
         expression {currentBuild.result != 'NOT_BUILT'}
       }
       steps {
-        sh 'cp -aR sphinx-theme/_static docs/'
-        sh 'cp -aR sphinx-theme/_templates docs/'
-        sh 'cp -aR sphinx-theme/Makefile docs/'
+        sh 'cp -aR theme/_static docs/'
+        sh 'cp -aR theme/_templates docs/'
+        sh 'cp -aR theme/Makefile docs/'
       }
     }
     stage('make html') {
@@ -258,7 +258,7 @@ pipeline {
       steps {
         sh 'rm -rf html'
         sh 'rm -rf docs'
-        sh 'rm -rf sphinx-theme'
+        sh 'rm -rf theme'
       }
     }
     stage('Commit new VERSION') {
