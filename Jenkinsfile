@@ -169,17 +169,17 @@ pipeline {
         sh 'mv docs/_build/html/* html/'
       }
     }
-    stage('terminalizer') {
-      when {
-        beforeAgent true
-        expression {currentBuild.result != 'NOT_BUILT'}
-      }
-      steps {
-        container('terminalizer') {
-          sh 'sh terminalizer.sh'
-        }
-      }
-    }
+//    stage('terminalizer') {
+//      when {
+//        beforeAgent true
+//        expression {currentBuild.result != 'NOT_BUILT'}
+//      }
+//      steps {
+//        container('terminalizer') {
+//          sh 'sh terminalizer.sh'
+//        }
+//      }
+//    }
     stage('Images') {
       when {
         beforeAgent true
