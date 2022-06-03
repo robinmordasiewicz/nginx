@@ -1,16 +1,19 @@
 #!/bin/bash
 #
 
-[ ! -d "html" ] && mkdir html
+[ -d "html" ] && rm -rf html
+mkdir html
 
-[ ! -d "theme" ] && mkdir theme
+[ -d "theme" ] && rm -rf theme
+mkdir theme
 cd theme
 git init
 git remote add origin https://github.com/robinmordasiewicz/theme.git
 git pull origin main
 cd -
 
-[ ! -d "docs" ] && mkdir docs
+[ -d "docs" ] && rm -rf docs
+mkdir docs
 cd docs
 git init
 git remote add origin https://github.com/robinmordasiewicz/f5-cnf-lab.git
@@ -21,7 +24,7 @@ cp -aR theme/_static docs/
 cp -aR theme/_templates docs/
 cp -aR theme/Makefile docs/
 
-#docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/imagemagick:latest ./imagemagick.sh
+docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/imagemagick:latest ./imagemagick.sh
 #docker run --pull=always --name diagrams --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/diagrams:latest ./diagrams.sh
 
 #cp -aR theme/.terminalizer ./

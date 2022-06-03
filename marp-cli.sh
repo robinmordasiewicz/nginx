@@ -1,6 +1,8 @@
 #!/bin/sh
 #
 
+cp index.png docs/
+
 [ ! -d "html" ] && mkdir html
 
 if test -f "/home/marp/.cli/docker-entrypoint"; then
