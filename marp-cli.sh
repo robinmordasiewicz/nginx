@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 
-cp index.png docs/
+cp *.png docs/
 
 [ ! -d "html" ] && mkdir html
 
