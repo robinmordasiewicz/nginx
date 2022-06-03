@@ -29,4 +29,5 @@ convert yellow-red-orange-cyan-blue.png theme/${LOGO} -gravity center -geometry 
 
 rm yellow.png yellow-red.png yellow-red-orange.png yellow-red-orange-cyan.png yellow-red-orange-cyan-blue.png hero-yellow-red-orange-cyan-blue.png title-caption.png title.png tmp.png title-caption-presenter.png title-caption-presenter-position.png title-caption-presenter-position-version.png
 
+cp index.png docs/
 cp index.png html/
