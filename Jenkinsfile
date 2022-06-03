@@ -149,26 +149,6 @@ pipeline {
         sh 'cp -aR theme/Makefile docs/'
       }
     }
-    stage('make html') {
-      when {
-        beforeAgent true
-        expression {currentBuild.result != 'NOT_BUILT'}
-      }
-      steps {
-        container('sphinx') {
-          sh 'sh sphinx.sh'
-        }
-      }
-    }
-    stage('copy html') {
-      when {
-        beforeAgent true
-        expression {currentBuild.result != 'NOT_BUILT'}
-      }
-      steps {
-        sh 'mv docs/_build/html/* html/'
-      }
-    }
 //    stage('terminalizer') {
 //      when {
 //        beforeAgent true
@@ -234,6 +214,26 @@ pipeline {
         container('marp-cli') {
           sh 'sh marp-cli.sh'
         }
+      }
+    }
+    stage('make html') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        container('sphinx') {
+          sh 'sh sphinx.sh'
+        }
+      }
+    }
+    stage('copy html') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        sh 'mv docs/_build/html/* html/'
       }
     }
     stage('Build/Push Container') {
