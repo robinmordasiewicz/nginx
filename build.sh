@@ -24,11 +24,12 @@ cp -aR theme/_static docs/
 cp -aR theme/_templates docs/
 cp -aR theme/Makefile docs/
 
-docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/imagemagick:latest ./imagemagick.sh
+#docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/imagemagick:latest ./imagemagick.sh
 docker run --pull=always --name diagrams --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/diagrams:latest ./diagrams.sh
+exit 0
 
-#cp -aR theme/.terminalizer ./
-#docker run --pull=always --name terminalizer --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/terminalizer:latest ./terminalizer.sh
+##cp -aR theme/.terminalizer ./
+##docker run --pull=always --name terminalizer --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/terminalizer:latest ./terminalizer.sh
 
 docker run --pull=always --name mermaid-cli --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/mermaid-cli:latest ./mermaid-cli.sh
 docker run --pull=always --name melt --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/melt:latest ./melt.sh
