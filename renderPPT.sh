@@ -24,11 +24,11 @@ cp -aR theme/_static docs/
 cp -aR theme/_templates docs/
 cp -aR theme/Makefile docs/
 
-./imagemagick.sh
-./mermaid-cli.sh
+#./imagemagick.sh
+#./mermaid-cli.sh
 #docker run --pull=always --name diagrams --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/diagrams:latest ./diagrams.sh
 
-./melt.sh
+#./melt.sh
 #./sphinx.sh
 #mv docs/_build/html/* html/
 
