@@ -16,7 +16,7 @@ cd -
 mkdir docs
 cd docs
 git init
-git remote add origin https://github.com/robinmordasiewicz/f5-cnf-lab.git
+git remote add origin https://github.com/robinmordasiewicz/contentascode.git
 git pull origin main
 cd -
 
