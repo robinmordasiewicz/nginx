@@ -4,7 +4,7 @@ pipeline {
     skipDefaultCheckout(true)
   }
   triggers {
-    upstream(upstreamProjects: "sphinx,theme,f5-cnf-lab,marp-cli", threshold: hudson.model.Result.SUCCESS)
+    upstream(upstreamProjects: "sphinx,theme,contentascode,marp-cli", threshold: hudson.model.Result.SUCCESS)
   }
   agent {
     kubernetes {
@@ -134,7 +134,7 @@ pipeline {
       steps {
         sh 'mkdir -p docs'
         dir ( 'docs' ) {
-          git branch: 'main', url: 'https://github.com/robinmordasiewicz/f5-cnf-lab.git'
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/contentascode.git'
         }
       }
     }
