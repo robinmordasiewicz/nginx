@@ -13,6 +13,12 @@ pipeline {
         kind: Pod
         spec:
           containers:
+          - name: puppeteer
+            image: robinhoodis/puppeteer:latest
+            imagePullPolicy: Always
+            command:
+            - cat
+            tty: true
           - name: terminalizer
             image: robinhoodis/terminalizer:latest
             imagePullPolicy: Always
@@ -191,6 +197,22 @@ pipeline {
         container('diagrams') {
           sh 'sh diagrams.sh'
           //sh 'mv docs/diagram1.png ./'
+        }
+      }
+    }
+    stage('Screen Recording') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        withKubeConfig([credentialsId: 'kubeconfig']) {
+          container('ubuntu') {
+            sh 'kubectl exec --namespace r-mordasiewicz -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo'
+          }
+        }
+        container('puppeteer') {
+          sh 'sh puppeteer.sh'
         }
       }
     }
