@@ -208,11 +208,15 @@ pipeline {
       steps {
         withKubeConfig([credentialsId: 'kubeconfig']) {
           container('ubuntu') {
-            sh 'kubectl exec --namespace r-mordasiewicz -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo'
+            script {
+              env.MYVAR = sh( script: "kubectl exec --namespace r-mordasiewicz -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo",
+                         returnStdout: true).trim()
+                         echo "MYVAR: ${env.MYVAR}"
+            }
           }
         }
         container('puppeteer') {
-          sh 'sh puppeteer.sh'
+          sh 'sh puppeteer.sh ${env.MYVAR}'
         }
       }
     }
