@@ -41,4 +41,3 @@ cp -aR theme/install-mouse-helper.js ./
 TOKEN=`kubectl exec --namespace r-mordasiewicz -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo`
 docker run --pull=always --name puppeteer --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/puppeteer:latest bash -c "node docs/index.js $TOKEN"
 
-
