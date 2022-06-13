@@ -23,7 +23,7 @@ cd -
 cp -aR theme/_static docs/
 cp -aR theme/_templates docs/
 cp -aR theme/Makefile docs/
-cp -aR theme/install-mouse-helper.js ./
+cp -aR theme/install-mouse-helper.js docs/
  
 #docker run --pull=always --name imagemagick --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/imagemagick:latest ./imagemagick.sh
 #docker run --pull=always --name diagrams --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/diagrams:latest ./diagrams.sh
@@ -38,6 +38,8 @@ cp -aR theme/install-mouse-helper.js ./
 
 #docker run --pull=always --name marp-cli --rm -t -v "$PWD":"/home/marp/app" --workdir "/home/marp/app" robinhoodis/marp-cli:latest ./marp-cli.sh
 
-TOKEN=`kubectl exec --namespace r-mordasiewicz -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo`
-docker run --pull=always --name puppeteer --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/puppeteer:latest bash -c "node docs/index.js $TOKEN"
+#TOKEN=`kubectl exec --namespace r-mordasiewicz -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo`
+#docker run --name puppeteer --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/puppeteer:114 bash -c "node docs/index.js $TOKEN"
 
+TOKEN='<password>'
+docker run --pull=always --name puppeteer --rm -t -v "$PWD":"/home/ubuntu" --workdir "/home/ubuntu" robinhoodis/puppeteer:latest bash -c "node volterra.js $TOKEN"

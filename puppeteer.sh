@@ -2,4 +2,4 @@
 #
 
 #node docs/index.js $1
-node docs/tmp.js
+node volterra.js $1
