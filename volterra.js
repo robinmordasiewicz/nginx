@@ -315,11 +315,8 @@ const Config = {
         const element = await waitForSelectors([["aria/Yes"],["#idSIButton9"]], targetPage, { timeout: 120000, visible: true });
         await scrollIntoViewIfNeeded(element, timeout);
         await cursor.click(element);
-       // await waitTillHTMLRendered(targetPage);
-        // await targetPage.waitForTimeout(2000);
     }
-/*
-*/
+
     await page.waitForTimeout(10000);
     await recorder.stop();
     await browser.close();
