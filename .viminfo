@@ -11,10 +11,12 @@
 # hlsearch on (H) or off (h):
 ~h
 # Command Line History (newest to oldest):
+:wq
+|2,0,1655171089,,"wq"
+:1
+|2,0,1655171080,,"1"
 :q
 |2,0,1654208775,,"q"
-:wq
-|2,0,1654015435,,"wq"
 
 # Search String History (newest to oldest):
 
@@ -27,22 +29,40 @@
 # Registers:
 
 # File marks:
-'0  1  0  ~/terminalizer.sh
-|4,48,1,0,1654208775,"~/terminalizer.sh"
-'1  6  53  ~/sphinx.sh
-|4,49,6,53,1654015435,"~/sphinx.sh"
-'2  5  0  ~/sphinx.sh
-|4,50,5,0,1654015404,"~/sphinx.sh"
+'0  62  0  ~/volterra.js
+|4,48,62,0,1655171089,"~/volterra.js"
+'1  1  0  ~/terminalizer.sh
+|4,49,1,0,1654208775,"~/terminalizer.sh"
+'2  6  53  ~/sphinx.sh
+|4,50,6,53,1654015435,"~/sphinx.sh"
 '3  5  0  ~/sphinx.sh
 |4,51,5,0,1654015404,"~/sphinx.sh"
+'4  5  0  ~/sphinx.sh
+|4,52,5,0,1654015404,"~/sphinx.sh"
 
 # Jumplist (newest first):
+-'  62  0  ~/volterra.js
+|4,39,62,0,1655171089,"~/volterra.js"
+-'  69  5  ~/volterra.js
+|4,39,69,5,1655171073,"~/volterra.js"
+-'  1  0  ~/volterra.js
+|4,39,1,0,1655171042,"~/volterra.js"
+-'  1  0  ~/terminalizer.sh
+|4,39,1,0,1654208775,"~/terminalizer.sh"
 -'  1  0  ~/terminalizer.sh
 |4,39,1,0,1654208775,"~/terminalizer.sh"
 -'  6  53  ~/sphinx.sh
 |4,39,6,53,1654015435,"~/sphinx.sh"
 -'  6  53  ~/sphinx.sh
 |4,39,6,53,1654015435,"~/sphinx.sh"
+-'  6  53  ~/sphinx.sh
+|4,39,6,53,1654015435,"~/sphinx.sh"
+-'  6  53  ~/sphinx.sh
+|4,39,6,53,1654015435,"~/sphinx.sh"
+-'  5  0  ~/sphinx.sh
+|4,39,5,0,1654015421,"~/sphinx.sh"
+-'  5  0  ~/sphinx.sh
+|4,39,5,0,1654015421,"~/sphinx.sh"
 -'  5  0  ~/sphinx.sh
 |4,39,5,0,1654015421,"~/sphinx.sh"
 -'  5  0  ~/sphinx.sh
@@ -51,6 +71,18 @@
 |4,39,5,0,1654015404,"~/sphinx.sh"
 -'  5  0  ~/sphinx.sh
 |4,39,5,0,1654015404,"~/sphinx.sh"
+-'  5  0  ~/sphinx.sh
+|4,39,5,0,1654015404,"~/sphinx.sh"
+-'  5  0  ~/sphinx.sh
+|4,39,5,0,1654015404,"~/sphinx.sh"
+-'  1  0  ~/sphinx.sh
+|4,39,1,0,1654015394,"~/sphinx.sh"
+-'  1  0  ~/sphinx.sh
+|4,39,1,0,1654015394,"~/sphinx.sh"
+-'  1  0  ~/sphinx.sh
+|4,39,1,0,1654015394,"~/sphinx.sh"
+-'  1  0  ~/sphinx.sh
+|4,39,1,0,1654015394,"~/sphinx.sh"
 -'  1  0  ~/sphinx.sh
 |4,39,1,0,1654015394,"~/sphinx.sh"
 -'  1  0  ~/sphinx.sh
@@ -61,6 +93,15 @@
 |4,39,1,0,1654015394,"~/sphinx.sh"
 
 # History of marks within files (newest to oldest):
+
+> ~/volterra.js
+	*	1655171087	0
+	"	62	0
+	^	321	6
+	.	321	5
+	+	58	21
+	+	69	5
+	+	321	5
 
 > ~/terminalizer.sh
 	*	1654208775	0

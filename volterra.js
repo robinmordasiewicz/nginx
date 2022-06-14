@@ -49,24 +49,43 @@ const Config = {
 };
 
 (async () => {
+    console.log("Start the Browser");
     const browser = await puppeteer.launch({
       //args: ["--no-sandbox", "--disabled-setupid-sandbox","--enable-font-antialiasing", "--high-dpi-support=1", "--font-render-hinting=none","--disable-gpu","--force-color-profile=srgb"],
       // args: ["--no-sandbox", "--disabled-setupid-sandbox", "--font-render-hinting=none","--disable-gpu","--force-color-profile=srgb"],
-      args: ["--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080"],
-      //executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      // args: ["--no-startup-window","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080"],
+       // args: ["--incognito","--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080","--app=https://f5-amer-ent.console.ves.volterra.io/"],
+       //args: ["--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080","--app=https://f5-amer-ent.console.ves.volterra.io/"],
+       //args: ["--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080","--app=https://f5-amer-ent.console.ves.volterra.io/"],
+       args: ["--disable-background-networking","--disable-sync","--use-mock-keychain","--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=none","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080"],
+       //args: ["--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1920,1080"],
+      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
       slowMo: 0,
-      headless : true
+      //ignoreDefaultArgs: ["--enable-automation","--enable-blink-features=IdleDetection"],
+      ignoreDefaultArgs: ["--enable-automation"],
+      ignoreHTTPSErrors: true,
+      headless : false
     });
 
+    console.log("Get a page handler");
+
+    //const context = await browser.createIncognitoBrowserContext();
+    //const page = await context.newPage();
     const page = await browser.newPage();
+    console.log("Set the user agent");
     await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
     const cursor = createCursor(page);
-    await installMouseHelper(page); // Install Mouse Helper
+    console.log("Install mouse helper");
+    await installMouseHelper(page);
+    console.log("Set page Viewport");
     await page.setViewport({ width: 1920, height: 1080 });
-    const timeout = 20000;
+    console.log("define a timeout variable for 20 seconds");
+    const timeout = 200000;
+    console.log("set default timeout on page");
     page.setDefaultTimeout(timeout);
-    const recorder = new PuppeteerScreenRecorder(page, Config);
-    await recorder.start("screenrecording.mp4");
+
+    //const recorder = new PuppeteerScreenRecorder(page, Config);
+    //await recorder.start("screenrecording.mp4");
 
     async function waitForSelectors(selectors, frame, options) {
       for (const selector of selectors) {
@@ -220,12 +239,13 @@ const Config = {
         const targetPage = page;
         const promises = [];
         promises.push(targetPage.waitForNavigation());
-        await targetPage.goto("https://login.ves.volterra.io/auth/realms/f5-amer-ent-qyyfhhfj/protocol/openid-connect/auth?state=05ac22aa-1bec-4f3f-87af-134893790d75&nonce=22f5b7f4-f9a5-455d-9709-6babff6bf091&response_type=code&client_id=ves-oidc-f5-amer-ent-qyyfhhfj&scope=openid%20profile&redirect_uri=https://f5-amer-ent.console.ves.volterra.io/",{waitUntil: 'networkidle0'});
+        // await targetPage.goto("https://login.ves.volterra.io/auth/realms/f5-amer-ent-qyyfhhfj/protocol/openid-connect/auth?state=05ac22aa-1bec-4f3f-87af-134893790d75&nonce=22f5b7f4-f9a5-455d-9709-6babff6bf091&response_type=code&client_id=ves-oidc-f5-amer-ent-qyyfhhfj&scope=openid%20profile&redirect_uri=https://f5-amer-ent.console.ves.volterra.io/",{waitUntil: 'networkidle0'});
         // await targetPage.goto("https://login.ves.volterra.io/auth/realms/f5-amer-ent-qyyfhhfj/protocol/openid-connect/auth?response_type=code&client_id=ves-oidc-f5-amer-ent-qyyfhhfj&scope=openid%20profile&redirect_uri=https://f5-amer-ent.console.ves.volterra.io/");
-       //  await targetPage.goto("https://f5-amer-ent.console.ves.volterra.io/");
+        await targetPage.goto("https://f5-amer-ent.console.ves.volterra.io/");
         await waitTillHTMLRendered(targetPage);
         await Promise.all(promises);
     }
+/*
     {
         // Click Sign in with Azure
         console.log("Click Sign in");
@@ -239,15 +259,6 @@ const Config = {
         await targetPage.waitForTimeout(2000);
         await Promise.all(promises);
     }
-/*
-    {
-        console.log("Click username field in login form");
-        const targetPage = page;
-        const element = await waitForSelectors([["aria/Enter your email, phone, or Skype."],["#i0116"]], targetPage, { timeout, visible: true });
-        await scrollIntoViewIfNeeded(element, timeout);
-        await cursor.click(element);
-    }
-*/
     {
         console.log("Enter email address in login form");
         const targetPage = page;
@@ -274,15 +285,6 @@ const Config = {
         await waitTillHTMLRendered(targetPage);
         await targetPage.waitForTimeout(2000);
     }
-/*
-    {
-        console.log("Click password form field");
-        const targetPage = page;
-        const element = await waitForSelectors(["#i0118"], targetPage, { timeout, visible: true });
-        await scrollIntoViewIfNeeded(element, timeout);
-        await cursor.click(element);
-    }
-*/
     {
         console.log("Enter password into form");
         const targetPage = page;
@@ -306,7 +308,7 @@ const Config = {
         const element = await waitForSelectors([["aria/Sign in"],["#idSIButton9"]], targetPage, { timeout, visible: true });
         await scrollIntoViewIfNeeded(element, timeout);
         await cursor.click(element);
-        await targetPage.waitForTimeout(4000);
+        // await targetPage.waitForTimeout(5000);
     }
     {
         console.log("Click Yes to continue");
@@ -314,10 +316,14 @@ const Config = {
         const targetPage = page;
         const element = await waitForSelectors([["aria/Yes"],["#idSIButton9"]], targetPage, { timeout: 120000, visible: true });
         await scrollIntoViewIfNeeded(element, timeout);
+        await targetPage.waitForTimeout(2000);
         await cursor.click(element);
     }
-
-    await page.waitForTimeout(10000);
-    await recorder.stop();
+*/
+    console.log("Pausing for 10 seconds");
+    await page.waitForTimeout(1000000);
+    //await recorder.stop();
+    console.log("Closing the browser");
     await browser.close();
+    console.log("exit puppeteer script");
 })();
