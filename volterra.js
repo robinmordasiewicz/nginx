@@ -245,7 +245,7 @@ const Config = {
         await waitTillHTMLRendered(targetPage);
         await Promise.all(promises);
     }
-/*
+
     {
         // Click Sign in with Azure
         console.log("Click Sign in");
@@ -319,7 +319,7 @@ const Config = {
         await targetPage.waitForTimeout(2000);
         await cursor.click(element);
     }
-*/
+
     console.log("Pausing for 10 seconds");
     await page.waitForTimeout(1000000);
     //await recorder.stop();
