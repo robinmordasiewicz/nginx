@@ -100,6 +100,26 @@ pipeline {
         }
       }
     }
+    stage('Commit new VERSION') {
+      steps {
+        sh 'git config user.email "nginx@example.com"'
+        sh 'git config user.name "nginx pipeline"'
+        sh 'git add .'
+        sh 'git commit -m "new movies"'
+        // sh 'git add VERSION && git diff --quiet && git diff --staged --quiet || git commit -m "`cat VERSION`"'
+        // sh 'git tag -a `cat VERSION` -m "`cat VERSION`" || echo "Tag: `cat VERSION` already exists"'
+        withCredentials([gitUsernamePassword(credentialsId: 'github-pat', gitToolName: 'git')]) {
+          //sh 'git diff --quiet && git diff --staged --quiet || git push origin main'
+          // sh 'git push origin main'
+          sh 'git push origin HEAD:main'
+          sh 'git push --tags'
+        }
+        script {
+          currentBuild.result = "SUCCESS"
+        }
+        echo "stage build result = ${currentBuild.result}"
+      }
+    }
   }
   post {
     always {
