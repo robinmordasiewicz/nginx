@@ -4,6 +4,7 @@ screenrecording.sh
 .chrome/Singleton*
 .chrome/RunningChromeVersion
 .chrome/Default/Cookies
+.chrome/Default/Cache/Cache_Data
 .config/google-chrome-unstable
 .pki/
 .npm/
