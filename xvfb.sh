@@ -3,6 +3,7 @@
 
 export DISPLAY=:99
 
+echo "Remove profile conflicts"
 if [ -f .chrome/SingletonLock ]; then
    rm -rf .chrome/Singleton*
 fi
