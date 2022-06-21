@@ -2,6 +2,9 @@
 xvfb.sh
 screenrecording.sh
 .fluxbox/
+.chrome/Singleton*
+.chrome/RunningChromeVersion
+.chrome/Default/Cookies
 .config/google-chrome-unstable
 .pki/
 .npm/
