@@ -7,7 +7,6 @@ screenrecording.sh
 .config/google-chrome-unstable
 .pki/
 .npm/
-install-mouse-helper.js
 html/
 theme/
 docs/
