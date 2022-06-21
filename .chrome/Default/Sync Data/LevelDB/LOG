@@ -1,2 +1,3 @@
-2022/06/14-16:10:07.267 11b03 Creating DB /Users/mordasiewicz/GIT/nginx/.chrome/Default/Sync Data/LevelDB since it was missing.
-2022/06/14-16:10:07.343 11b03 Reusing MANIFEST /Users/mordasiewicz/GIT/nginx/.chrome/Default/Sync Data/LevelDB/MANIFEST-000001
+2022/06/20-15:48:27.993 4c85 Reusing MANIFEST /home/ubuntu/.chrome/Default/Sync Data/LevelDB/MANIFEST-000001
+2022/06/20-15:48:28.012 4c85 Recovering log #3
+2022/06/20-15:48:28.020 4c85 Reusing old log /home/ubuntu/.chrome/Default/Sync Data/LevelDB/000003.log 

@@ -1,2 +1,3 @@
-2022/06/14-16:10:07.791 10d03 Creating DB /Users/mordasiewicz/GIT/nginx/.chrome/Default/shared_proto_db/metadata since it was missing.
-2022/06/14-16:10:07.817 10d03 Reusing MANIFEST /Users/mordasiewicz/GIT/nginx/.chrome/Default/shared_proto_db/metadata/MANIFEST-000001
+2022/06/20-15:48:28.235 4c7e Reusing MANIFEST /home/ubuntu/.chrome/Default/shared_proto_db/metadata/MANIFEST-000001
+2022/06/20-15:48:28.247 4c7e Recovering log #3
+2022/06/20-15:48:28.252 4c7e Reusing old log /home/ubuntu/.chrome/Default/shared_proto_db/metadata/000003.log 

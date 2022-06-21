@@ -1,2 +1,3 @@
-2022/06/14-16:10:07.491 4b03 Creating DB /Users/mordasiewicz/GIT/nginx/.chrome/Default/Local Storage/leveldb since it was missing.
-2022/06/14-16:10:07.514 4b03 Reusing MANIFEST /Users/mordasiewicz/GIT/nginx/.chrome/Default/Local Storage/leveldb/MANIFEST-000001
+2022/06/20-15:48:28.061 4c8e Reusing MANIFEST /home/ubuntu/.chrome/Default/Local Storage/leveldb/MANIFEST-000001
+2022/06/20-15:48:28.076 4c8e Recovering log #10
+2022/06/20-15:48:28.090 4c8e Reusing old log /home/ubuntu/.chrome/Default/Local Storage/leveldb/000010.log 
