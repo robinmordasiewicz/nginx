@@ -284,7 +284,7 @@ const Config = {
     {
         console.log("Enter password into form");
         const targetPage = page;
-        const element = await waitForSelectors([["aria/Enter the password for USERNAME"],["#i0118"]], targetPage, { timeout, visible: true });
+        const element = await waitForSelectors([["aria/Enter the password for r.mordasiewicz@f5.com"],["#i0118"]], targetPage, { timeout, visible: true });
         await scrollIntoViewIfNeeded(element, timeout);
         const type = await element.evaluate(el => el.type);
         if (["textarea","select-one","text","url","tel","search","password","number","email"].includes(type)) {
