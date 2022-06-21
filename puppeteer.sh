@@ -15,5 +15,5 @@ if [ -f .chrome/Default/Cookies ];then
    rm -rf .chrome/Default/Cookies
 fi
 
-node volterra.js ponti8-Sajcyn-hogbih
+node volterra.js $1 $2
 

@@ -97,7 +97,7 @@ pipeline {
         checkout scm
         sh 'printenv'
         container('ubuntu') {
-          sh('node volterra.js ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}'
+          sh('sh xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}'
         }
       }
     }
