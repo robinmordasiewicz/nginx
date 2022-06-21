@@ -96,7 +96,7 @@ pipeline {
         cleanWs()
         checkout scm
         container('puppeteer') {
-          sh('/bin/bash -c ./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
+          sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
         }
       }
     }
