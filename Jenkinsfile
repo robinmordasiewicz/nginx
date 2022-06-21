@@ -95,7 +95,7 @@ pipeline {
       steps {
         cleanWs()
         checkout scm
-        sh 'printenv'
+        sh 'ls -al'
         container('ubuntu') {
           sh('sh xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
         }
