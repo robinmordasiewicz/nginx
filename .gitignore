@@ -49,3 +49,8 @@ package-lock.json
 package.json
 *.mkv
 *.mlt
+distributed-cloud-login.js
+install-mouse-helper.js
+puppeteer.sh
+screenrecording.txt (95%)
+xvfb.sh

@@ -130,6 +130,7 @@ pipeline {
         container('puppeteer') {
           sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
         }
+        sh('rm xvfb.sh puppeteer.sh install-mouse-helper.js distributed-cloud-login.js')
       }
     }
     stage('Commit new VERSION') {
