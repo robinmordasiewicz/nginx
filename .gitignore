@@ -14,6 +14,7 @@ screenrecording.sh
 .chrome/Default/Network\ Persistent\ State/
 .chrome/Default/optimization_guide_prediction_model_downloads
 .config/google-chrome-unstable
+.chrome/Default/Session\ Storage\
 .pki/
 .npm/
 html/
