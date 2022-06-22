@@ -77,10 +77,12 @@ const Config = {
     await installMouseHelper(page);
     console.log("Set page Viewport");
     await page.setViewport({ width: 1920, height: 1080 });
-    console.log("define a timeout variable for 60 seconds");
-    const timeout = 60000;
+    console.log("define a timeout variable for 70 seconds");
+    const timeout = 70000;
     console.log("set default timeout on page");
     page.setDefaultTimeout(timeout);
+    console.log("Pause for 10 seconds");
+    await page.waitForTimeout(10000);
 
     //const recorder = new PuppeteerScreenRecorder(page, Config);
     //await recorder.start("screenrecording.mp4");
