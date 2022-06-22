@@ -16,6 +16,8 @@ screenrecording.sh
 .chrome/Default/optimization_guide_prediction_model_downloads
 .config/google-chrome-unstable
 .chrome/Default/Session\ Storage\
+.chrome/Local\ State
+.chrome/chrome_shutdown_ms.txt
 .pki/
 .npm/
 html/
