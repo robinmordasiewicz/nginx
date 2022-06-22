@@ -1,3 +1,3 @@
-2022/06/22-10:58:14.638 4c Reusing MANIFEST /home/jenkins/agent/workspace/nginx/.chrome/Default/Site Characteristics Database/MANIFEST-000001
-2022/06/22-10:58:14.639 4c Recovering log #3
-2022/06/22-10:58:14.639 4c Reusing old log /home/jenkins/agent/workspace/nginx/.chrome/Default/Site Characteristics Database/000003.log 
+2022/06/22-11:17:45.639 52 Reusing MANIFEST /home/jenkins/agent/workspace/nginx/.chrome/Default/Site Characteristics Database/MANIFEST-000001
+2022/06/22-11:17:45.643 52 Recovering log #3
+2022/06/22-11:17:45.644 52 Reusing old log /home/jenkins/agent/workspace/nginx/.chrome/Default/Site Characteristics Database/000003.log 
