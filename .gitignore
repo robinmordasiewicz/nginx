@@ -3,6 +3,7 @@ screenrecording.sh
 .fluxbox/
 .chrome/Singleton*
 .chrome/RunningChromeVersion
+.chrome/BrowserMetrics-spare.pma
 .chrome/Default/Cookies
 .chrome/Default/Cache/Cache_Data/
 .chrome/Default/optimization_guide_model_and_features_store/
