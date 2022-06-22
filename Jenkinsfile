@@ -127,11 +127,12 @@ pipeline {
         sh('cp bin/puppeteer.sh ./')
         sh('cp theme/install-mouse-helper.js ./')
         sh('cp theme/puppeteer-functions.mjs ./')
+        sh('cp -a theme/.chrome ./')
         sh('cp docs/distributed-cloud-login.js ./')
         container('puppeteer') {
           sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
         }
-        sh('rm xvfb.sh puppeteer.sh install-mouse-helper.js distributed-cloud-login.js puppeteer-functions.mjs')
+        sh('rm -rf xvfb.sh puppeteer.sh install-mouse-helper.js distributed-cloud-login.js puppeteer-functions.mjs .chrome')
       }
     }
     stage('Commit new VERSION') {
