@@ -96,6 +96,10 @@ pipeline {
         cleanWs()
         checkout scm
         container('puppeteer') {
+          sh('cp bin/xvfb.sh ./')
+          sh('cp bin/puppeteer.sh ./')
+          sh('cp theme/install-mouse-helper.js ./')
+          sh('cp docs/distributed-cloud-login.js ./')
           sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
         }
       }

@@ -200,7 +200,25 @@ pipeline {
         }
       }
     }
-    stage('Screen Recording') {
+    stage('Volterra Screenrecording') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      environment {
+        AN_ACCESS_KEY = credentials('voltpass')
+      }
+      steps {
+        container('puppeteer') {
+          sh('cp bin/xvfb.sh ./')
+          sh('cp bin/puppeteer.sh ./')
+          sh('cp theme/install-mouse-helper.js ./')
+          sh('cp docs/distributed-cloud-login.js ./')
+          sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
+        }
+      }
+    }
+    stage('Jenkins Recording') {
       when {
         beforeAgent true
         expression {currentBuild.result != 'NOT_BUILT'}
