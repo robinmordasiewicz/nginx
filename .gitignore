@@ -8,6 +8,10 @@ screenrecording.sh
 .chrome/Default/optimization_guide_model_and_features_store/
 .chrome/Default/Code\ Cache/
 .chrome/hyphen-data/
+.chrome/Default/Sessions/
+.chrome/PKIMetadata/
+.chrome/Default/TransportSecurity
+.chrome/Default/Network\ Persistent\ State/
 .chrome/Default/optimization_guide_prediction_model_downloads
 .config/google-chrome-unstable
 .pki/
