@@ -1,22 +1,31 @@
 .bash_history
 screenrecording.sh
 .fluxbox/
-.chrome/Singleton*
-.chrome/RunningChromeVersion
-.chrome/BrowserMetrics-spare.pma
 .chrome/Default/Cookies
 .chrome/Default/Cache/Cache_Data/
 .chrome/Default/optimization_guide_model_and_features_store/
 .chrome/Default/Code\ Cache/
-.chrome/hyphen-data/
 .chrome/Default/Sessions/
-.chrome/PKIMetadata/
-.chrome/Default/TransportSecurity
+.chrome/Default/TransportSecurity/
+.chrome/Default/Visited\ Links/
 .chrome/Default/Network\ Persistent\ State/
 .chrome/Default/optimization_guide_prediction_model_downloads
-.config/google-chrome-unstable
+.chrome/Default/shared_proto_db/
+.chrome/Default/Site\ Characteristics\ Database/
+.chrome/Default/Sync\ Data
 .chrome/Default/Session\ Storage\
-.chrome/Local\ State
+.chrome/Default/History
+.chrome/Default/History-journal
+.chrome/Variations
+.chrome/PKIMetadata/
+.chrome/Singleton*
+.chrome/RunningChromeVersion
+.chrome/BrowserMetrics-spare.pma
+.chrome/hyphen-data/
+.config/google-chrome-unstable
+.chrome/Local\ State/
+.chrome/GrShaderCache/
+.chrome/DevToolsActivePort
 .chrome/chrome_shutdown_ms.txt
 .pki/
 .npm/
