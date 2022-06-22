@@ -20,7 +20,8 @@ fi
 echo "Turn on the virtual frame buffer and run puppeteer after a 10 second delay"
 #xvfb-run -n 99 -a --listen-tcp --server-args="-screen 0 1920x1080x24 -ac -nolisten tcp -dpi 96 +extension RANDR" "./puppeteer.sh $1 $2" &
 #xvfb-run -n 99 -a --listen-tcp --server-args="-screen 0 1920x1080x24 -ac -nolisten tcp -dpi 96 +extension RANDR" sleep 10 ; node volterra.js $1 $2 &
-xvfb-run -n 99 -a --listen-tcp --server-args="-screen 0 1920x1080x24 -ac -nolisten tcp -dpi 96 +extension RANDR" node distributed-cloud-login.js $1 $2 &
+#xvfb-run -n 99 -a --listen-tcp --server-args="-screen 0 1920x1080x24 -ac -nolisten tcp -dpi 96 +extension RANDR" node distributed-cloud-login.js $1 $2 &
+xvfb-run -n 99 -a --listen-tcp --server-args="-screen 0 1280x720x24 -ac -nolisten tcp -dpi 96 +extension RANDR" node distributed-cloud-login.js $1 $2 &
 
 # Start recording the console
 echo "Start recording the virtual frame buffer to screenrecording.mkv for 75 seconds"
