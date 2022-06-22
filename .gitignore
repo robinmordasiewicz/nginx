@@ -1,6 +1,7 @@
 .bash_history
 .DS_Store
 screenrecording.sh
+.chrome/
 .viminfo
 .fluxbox/
 .pki/
