@@ -1,5 +1,7 @@
 .bash_history
+.DS_Store
 screenrecording.sh
+.viminfo
 .fluxbox/
 .chrome/Default/Cookies
 .chrome/Default/Cache/Cache_Data/
