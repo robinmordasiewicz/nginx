@@ -89,17 +89,45 @@ pipeline {
   }
   stages {
     stage('INIT') {
+      steps {
+        cleanWs()
+        checkout scm
+      }
+    }
+    stage('checkout theme') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        sh 'mkdir -p theme'
+        dir ( 'theme' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/theme.git'
+        }
+      }
+    }
+    stage('checkout docs') {
+      when {
+        beforeAgent true
+        expression {currentBuild.result != 'NOT_BUILT'}
+      }
+      steps {
+        sh 'mkdir -p docs'
+        dir ( 'docs' ) {
+          git branch: 'main', url: 'https://github.com/robinmordasiewicz/contentascode.git'
+        }
+      }
+    }
+    stage('Screen Recording') {
       environment {
         AN_ACCESS_KEY = credentials('voltpass')
       }
       steps {
-        cleanWs()
-        checkout scm
+        sh('cp bin/xvfb.sh ./')
+        sh('cp bin/puppeteer.sh ./')
+        sh('cp theme/install-mouse-helper.js ./')
+        sh('cp docs/distributed-cloud-login.js ./')
         container('puppeteer') {
-          sh('cp bin/xvfb.sh ./')
-          sh('cp bin/puppeteer.sh ./')
-          sh('cp theme/install-mouse-helper.js ./')
-          sh('cp docs/distributed-cloud-login.js ./')
           sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
         }
       }
