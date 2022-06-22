@@ -6,6 +6,8 @@ screenrecording.sh
 .chrome/Default/Cookies
 .chrome/Default/Cache/Cache_Data/
 .chrome/Default/optimization_guide_model_and_features_store/
+.chrome/Default/Code\ Cache/
+.chrome/Default/optimization_guide_prediction_model_downloads
 .config/google-chrome-unstable
 .pki/
 .npm/
