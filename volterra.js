@@ -264,7 +264,7 @@ const Config = {
         await scrollIntoViewIfNeeded(element, timeout);
         const type = await element.evaluate(el => el.type);
         if (["textarea","select-one","text","url","tel","search","password","number","email"].includes(type)) {
-          await element.type(USERNAME, {delay: 20});
+          await element.type(USERNAME, {delay: 30});
         } else {
           await element.focus();
           await element.evaluate((el, value) => {
@@ -290,7 +290,7 @@ const Config = {
         await scrollIntoViewIfNeeded(element, timeout);
         const type = await element.evaluate(el => el.type);
         if (["textarea","select-one","text","url","tel","search","password","number","email"].includes(type)) {
-          await element.type(PASSWORD, {delay: 20});
+          await element.type(PASSWORD, {delay: 35});
         } else {
           await element.focus();
           await element.evaluate((el, value) => {
