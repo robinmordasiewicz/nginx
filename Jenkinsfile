@@ -127,8 +127,8 @@ pipeline {
         sh('cp bin/puppeteer.sh ./')
         sh('cp theme/install-mouse-helper.js ./')
         sh('cp theme/puppeteer-functions.mjs ./')
-        sh('cp -a theme/.chrome ./')
-        sh('cp -a theme/.icewm ./')
+        sh('cp -aR theme/.chrome ./')
+        sh('cp -aR theme/.icewm ./')
         sh('cp docs/distributed-cloud-login.js ./')
         container('puppeteer') {
           sh('./xvfb.sh ${AN_ACCESS_KEY_USR} ${AN_ACCESS_KEY_PSW}')
