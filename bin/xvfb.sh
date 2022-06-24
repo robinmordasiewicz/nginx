@@ -27,7 +27,7 @@ xvfb-run -n 99 -a --listen-tcp --server-args="-screen 0 1664x936x24 -ac -noliste
 # Start recording the console
 echo "Start recording the virtual frame buffer to screenrecording.mkv for 85 seconds"
 FFREPORT=file=screenrecording.log:level=32
-ffmpeg -v quiet -stats -video_size 1664x936 -r 30 -y -f x11grab -draw_mouse 0 -i :99 -an -c:v libx264rgb -crf 0 -analyzeduration 100M -probesize 400M -tune zerolatency -preset ultrafast -qp 0 -b:v 500k -t 85 screenrecording.mkv &
+ffmpeg -v quiet -stats -video_size 1664x936 -r 30 -y -f x11grab -draw_mouse 0 -i :99 -f pulse -c:v libx264rgb -crf 18 -analyzeduration 100M -probesize 400M -tune zerolatency -preset ultrafast -qp 0 -b:v 500k -t 85 screenrecording.mkv &
 
 node distributed-cloud-login.js $1 $2
 echo "Pausing 85 seconds"
