@@ -72,7 +72,7 @@ do
    FRAME=`echo $entry | cut -f 1 -d " " | cut -f 2 -d ":"`
    YAVG=`echo $entry | cut -f 2 -d "="`
 
-   if [[ $(echo "${YAVG}>228.7"|bc) -gt 0 || $(echo "${YAVG}==226.695"|bc) -gt 0 || $(echo "${YAVG}==226.684"|bc) -gt 0 || $(echo "${YAVG}==227.682"|bc) -gt 0 || $(echo "${YAVG}==227.693"|bc) -gt 0 || $(echo "${YAVG}==223.697"|bc) -gt 0 || $(echo "${YAVG}==223.696"|bc) -gt 0 || $(echo "${YAVG}==228.692"|bc) -gt 0 || $(echo "${YAVG}==225.376"|bc) -gt 0 || $(echo "${YAVG}==227.865"|bc) -gt 0 ]]; then
+   if [[ $(echo "${YAVG}>228.7"|bc) -gt 0 || $(echo "${YAVG}==227"|bc) -gt 0 || $(echo "${YAVG}==226.695"|bc) -gt 0 || $(echo "${YAVG}==226.684"|bc) -gt 0 || $(echo "${YAVG}==227.682"|bc) -gt 0 || $(echo "${YAVG}==227.693"|bc) -gt 0 || $(echo "${YAVG}==223.697"|bc) -gt 0 || $(echo "${YAVG}==223.696"|bc) -gt 0 || $(echo "${YAVG}==228.692"|bc) -gt 0 || $(echo "${YAVG}==225.376"|bc) -gt 0 || $(echo "${YAVG}==227.865"|bc) -gt 0 ]]; then
 
       if [ "$counter" -gt 0 ];then
         DROPFRAMES="${DROPFRAMES}+eq(n\,${FRAME})"
