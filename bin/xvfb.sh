@@ -94,15 +94,15 @@ ffmpeg -v quiet -stats -vsync 0 -y -i screenrecording.mkv -vf "select=${DROPFRAM
 mv screenrecording-processed.mkv screenrecording.mkv
 
 ## Get the metadata
-#echo "get metadata from screenrecording.mkv and write to screenrecording.txt"
-#ffmpeg -v quiet -stats -i screenrecording.mkv -vf:? "signalstats,metadata=print:key=lavfi.signalstats.YAVG:file='screenrecording.txt'" -f null -
-#paste -d " "  - - < screenrecording.txt > screenrecording.txt.tmp
-#mv screenrecording.txt.tmp screenrecording.txt
+echo "get metadata from screenrecording.mkv and write to screenrecording.txt"
+ffmpeg -v quiet -stats -i screenrecording.mkv -vf:? "signalstats,metadata=print:key=lavfi.signalstats.YAVG:file='screenrecording.txt'" -f null -
+paste -d " "  - - < screenrecording.txt > screenrecording.txt.tmp
+mv screenrecording.txt.tmp screenrecording.txt
 
 ## Draw overlay information
-#echo "Draw overlay onto screenrecording.mkv and write output to screenrecording-overlay.mkv"
-#ffmpeg -v quiet -stats -y -i screenrecording.mkv -stats -an -c:v libx264rgb -crf 0 -analyzeduration 100M -probesize 400M -tune zerolatency -preset ultrafast -qp 0 -b:v 500k -filter_complex "[0:v]signalstats,drawtext='fontsize=24:fontcolor=red:text=YAVG\=%{metadata\:lavfi.signalstats.YAVG}':x=100:y=100,drawtext=text= Frame %{n}:x=100:y=150:fontsize=24:fontcolor=red[v]" -map '[v]' -an "screenrecording-overlay.mkv"
-# mv screenrecording-overlay.mkv screenrecording.mkv
+echo "Draw overlay onto screenrecording.mkv and write output to screenrecording-overlay.mkv"
+ffmpeg -v quiet -stats -y -i screenrecording.mkv -stats -an -c:v libx264rgb -crf 0 -analyzeduration 100M -probesize 400M -tune zerolatency -preset ultrafast -qp 0 -b:v 500k -filter_complex "[0:v]signalstats,drawtext='fontsize=24:fontcolor=red:text=YAVG\=%{metadata\:lavfi.signalstats.YAVG}':x=100:y=100,drawtext=text= Frame %{n}:x=100:y=150:fontsize=24:fontcolor=red[v]" -map '[v]' -an "screenrecording-overlay.mkv"
+ mv screenrecording-overlay.mkv screenrecording.mkv
 
 # sharpen things up
 echo "Sharpen video"
