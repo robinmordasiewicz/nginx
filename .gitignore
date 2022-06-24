@@ -1,4 +1,6 @@
 .bash_history
+.viminfo
+.config/
 .DS_Store
 .icewm/
 screenrecording.sh
