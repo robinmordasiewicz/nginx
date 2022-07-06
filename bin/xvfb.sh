@@ -30,7 +30,10 @@ echo "Start recording the virtual frame buffer to screenrecording.mkv for 85 sec
 # ffmpeg -v quiet -stats -video_size 1664x936 -r 30 -y -f x11grab -draw_mouse 0 -i :99 -f pulse -c:v libx264rgb -crf 18 -analyzeduration 100M -probesize 400M -tune zerolatency -preset ultrafast -qp 0 -b:v 500k -t 85 screenrecording.mkv &
 ffmpeg -v quiet -stats -video_size 1664x936 -r 30 -y -f x11grab -draw_mouse 0 -i :99 -c:v libx264rgb -crf 0 -analyzeduration 100M -probesize 400M -tune zerolatency -preset ultrafast -qp 0 -b:v 500k -t 85 screenrecording.mkv &
 
-node distributed-cloud-login.js $1 $2
+export POSTMAN_DISABLE_GPU=true
+postman &
+sleep 15
+node distributed-cloud-login.js $1 $2 &
 echo "Pausing 85 seconds"
 sleep 85
 
@@ -72,7 +75,8 @@ do
    FRAME=`echo $entry | cut -f 1 -d " " | cut -f 2 -d ":"`
    YAVG=`echo $entry | cut -f 2 -d "="`
 
-   if [[ $(echo "${YAVG}>228.7"|bc) -gt 0 || $(echo "${YAVG}==227"|bc) -gt 0 || $(echo "${YAVG}==226.695"|bc) -gt 0 || $(echo "${YAVG}==226.684"|bc) -gt 0 || $(echo "${YAVG}==227.682"|bc) -gt 0 || $(echo "${YAVG}==227.693"|bc) -gt 0 || $(echo "${YAVG}==223.697"|bc) -gt 0 || $(echo "${YAVG}==223.696"|bc) -gt 0 || $(echo "${YAVG}==228.692"|bc) -gt 0 || $(echo "${YAVG}==225.376"|bc) -gt 0 || $(echo "${YAVG}==227.865"|bc) -gt 0 ]]; then
+   #if [[ $(echo "${YAVG}>228.7"|bc) -gt 0 || $(echo "${YAVG}==227"|bc) -gt 0 || $(echo "${YAVG}==226.695"|bc) -gt 0 || $(echo "${YAVG}==226.684"|bc) -gt 0 || $(echo "${YAVG}==227.682"|bc) -gt 0 || $(echo "${YAVG}==227.693"|bc) -gt 0 || $(echo "${YAVG}==223.697"|bc) -gt 0 || $(echo "${YAVG}==223.696"|bc) -gt 0 || $(echo "${YAVG}==228.692"|bc) -gt 0 || $(echo "${YAVG}==225.376"|bc) -gt 0 || $(echo "${YAVG}==227.865"|bc) -gt 0 ]]; then
+   if [[ $(echo "${YAVG}>228.7"|bc) -gt 0 || $(echo "${YAVG}==227"|bc) -gt 0 || $(echo "${YAVG}==226.695"|bc) -gt 0 || $(echo "${YAVG}==226.684"|bc) -gt 0 || $(echo "${YAVG}==227.682"|bc) -gt 0 || $(echo "${YAVG}==227.693"|bc) -gt 0 || $(echo "${YAVG}==223.697"|bc) -gt 0 || $(echo "${YAVG}==223.696"|bc) -gt 0 || $(echo "${YAVG}==228.692"|bc) -gt 0 || $(echo "${YAVG}==225.376"|bc) -gt 0 || $(echo "${YAVG}==227.865"|bc) -gt 0 || $(echo "${YAVG}<16.1"|bc) -gt 0 || $(echo "${YAVG}==228"|bc) -gt 0 || $(echo "${YAVG}==224.915"|bc) -gt 0 ]]; then
 
       if [ "$counter" -gt 0 ];then
         DROPFRAMES="${DROPFRAMES}+eq(n\,${FRAME})"

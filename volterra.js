@@ -6,7 +6,8 @@ const {installMouseHelper} = require('./install-mouse-helper.js');
     console.log("Start the Browser");
     const browser = await puppeteer.launch({
        // args: ["--disable-dev-shm-usage","--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=none","--disable-gpu","--force-color-profile=srgb","--window-size=1664,936","--hide-scrollbars","--high-dpi-support=1","--force-device-scale-factor=1"],
-       args: ["--disable-dev-shm-usage","--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1664,936","--hide-scrollbars"],
+       //args: ["--disable-dev-shm-usage","--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=medium","--disable-gpu","--force-color-profile=srgb","--window-size=1664,936","--hide-scrollbars"],
+       args: ["--disable-dev-shm-usage","--user-data-dir=./.chrome","--start-fullscreen","--kiosk","--disable-session-crashed-bubble","--noerrdialogs","--no-default-browser-check","--useAutomationExtension","--disable-infobars","--ignore-certificate-errors","--start-maximized","--enable-automation","--no-sandbox", "--disabled-setupid-sandbox", "--enable-font-antialiasing","--font-render-hinting=full","--disable-gpu","--force-color-profile=generic-rgb","--window-size=1664,936","--hide-scrollbars"],
       //executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
       //executablePath: '/opt/google/chrome-unstable/google-chrome-unstable',
       slowMo: 0,
@@ -48,8 +49,6 @@ const {installMouseHelper} = require('./install-mouse-helper.js');
         await Promise.all(promises);
     }
 
-    console.log("Pausing for 12 seconds");
-    await page.waitForTimeout(12000);
     console.log("Closing the browser");
     await browser.close();
     console.log("exit puppeteer script");
